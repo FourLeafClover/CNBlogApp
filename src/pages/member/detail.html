@@ -1,0 +1,27 @@
+<ion-content class="card-background-page">
+    <ion-card>
+        <img src="assets/img/background.png" />
+        <div class="card-title"><img src='{{user.Avatar}}' /></div>
+        <div class="card-subtitle">{{blogApp}}</div>
+        <div class="card-subtitle">代码改变世界</div>
+    </ion-card>
+    <ion-row style="width:100%;">
+        <ul class="homeBtnList tab_width2">
+            <li>
+                <div (click)='gotoBlog()' style="margin: 10px; padding: 5px;">
+                    <ion-icon name="bookmarks" style="font-size:3.5rem"></ion-icon>
+                    <label style="display:block">博客</label>
+                </div>
+            </li>
+            <li>
+                <div style="margin: 10px; padding: 5px;" (click)='login()'>
+                    <ion-icon name="bookmarks" style="font-size:3.5rem"></ion-icon>
+                    <label style="display:block">{{status}}</label>
+                </div>
+            </li>
+        </ul>
+    </ion-row>
+    <ion-fab bottom right #fab>
+        <button ion-fab (click)='return()'>返回</button>
+    </ion-fab>
+</ion-content>

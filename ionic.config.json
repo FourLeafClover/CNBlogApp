@@ -1,0 +1,27 @@
+{
+    "name": "CNode_Ionic2",
+    "app_id": "",
+    "v2": true,
+    "typescript": true,
+    "proxies": [{
+            "path": "/api",
+            "proxyUrl": "https://api.cnblogs.com/api"
+        },
+        {
+            "path": "/blog",
+            "proxyUrl": "http://wcf.open.cnblogs.com/blog"
+        },
+        {
+            "path": "/user",
+            "proxyUrl": "https://passport.cnblogs.com/user"
+        },
+        {
+            "path": "/mvc",
+            "proxyUrl": "http://www.cnblogs.com/mvc"
+        },
+        {
+            "path": "https://api.cnblogs.com/token",
+            "proxyUrl": "https://api.cnblogs.com/token"
+        }
+    ]
+}

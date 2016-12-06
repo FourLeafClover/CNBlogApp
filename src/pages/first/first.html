@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            首页
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingText="向下拉重新加载" refreshingText="正在刷新数据,请稍等..."></ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+        <ion-item item-text-wrap *ngFor="let item of summaryList">
+            <ion-avatar item-left>
+                <img src="{{item.Avatar}}">
+            </ion-avatar>
+            <div (click)="gotoToDetail(item)">
+                <h2>{{item.Author}}</h2>
+                <h3>{{item.Title}}</h3>
+                <p>{{item.Description}}</p>
+            </div>
+        </ion-item>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingText="正在加载下一页数据,请等待...">正在加载下一页数据,请等待...</ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

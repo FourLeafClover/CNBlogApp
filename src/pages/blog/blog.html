@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            博客
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-refresher (ionRefresh)="doRefresh($event)" cancelling *ngIf="scrollEnable">
+        <ion-refresher-content pullingText="向下拉重新加载" refreshingText="正在刷新数据,请稍等..."></ion-refresher-content>
+    </ion-refresher>
+    <ion-list>
+        <ion-card *ngFor="let item of summaryList">
+            <ion-item>
+                <ion-avatar item-left (click)='gotoBlogApp(item.BlogApp)'>
+                    <img src="{{item.Avatar}}" onerror="this.src='http://www.cnblogs.com/images/logo_small.gif''">
+                </ion-avatar>
+                <h2>{{item.Title}}</h2>
+                <p style="padding-top:3px;">{{item.Author}} {{item.PostDate.substring(0,10)}}</p>
+            </ion-item>
+            <ion-card-content (click)='gotoToDetail(item)'>
+                <p>{{item.Description}}</p>
+            </ion-card-content>
+            <ion-row (click)='gotoToDetail(item)'>
+                <ion-col>
+                    <button ion-button icon-left clear small>
+                        <ion-icon name="thumbs-up"></ion-icon>
+                        <div>{{item.DiggCount}} Likes</div>
+                    </button>
+                </ion-col>
+                <ion-col>
+                    <button ion-button icon-left clear small>
+                        <ion-icon name="text"></ion-icon>
+                        <div>{{item.CommentCount}} Comments</div>
+                    </button>
+                </ion-col>
+                <ion-col center text-center>
+                    <button ion-button icon-left clear small>
+                        <ion-icon name="eye"></ion-icon>
+                        <div>{{item.ViewCount}} Views</div>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="scrollEnable">
+        <ion-infinite-scroll-content loadingText="正在加载下一页数据,请等待...">正在加载下一页数据,请等待...</ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
+<ion-footer>
+    <div class="footer_tab tab_width3">
+        <ul>
+            <li>
+                <a href="javascript:void(0)" (click)='getCurrentTab(1)' [ngClass]="curIndex==1?'current':''">首页</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)='getCurrentTab(2)' [ngClass]="curIndex==2?'current':''">精华</a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" (click)='getCurrentTab(3)' [ngClass]="curIndex==3?'current':''">48h</a>
+            </li>
+        </ul>
+    </div>
+</ion-footer>

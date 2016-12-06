@@ -1,0 +1,24 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            评论
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        <ion-item item-text-wrap *ngFor="let item of summaryList">
+            <ion-avatar item-left>
+                <img src="{{item.FaceUrl}}">
+            </ion-avatar>
+            <h2>{{item.UserName}}</h2>
+            <div [innerHtml]="item.CommentContent"></div>
+            <p>
+                {{item.Floor}}楼,{{item.DateAdded}}
+            </p>
+        </ion-item>
+    </ion-list>
+    <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingText="正在加载下一页数据,请等待...">正在加载下一页数据,请等待...</ion-infinite-scroll-content>
+    </ion-infinite-scroll>-->
+</ion-content>

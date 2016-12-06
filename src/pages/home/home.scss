@@ -1,0 +1,146 @@
+page-all {
+    * {
+        margin: 0;
+        padding: 0
+    }
+    #table1 table {
+        width: 100%;
+    }
+    #table1 td {
+        width: 25%;
+        text-align: center;
+    }
+    #header li {
+        height: 25px;
+        font-size: 18px;
+        line-height: 25px;
+        margin: 20px 10px 10px 20px;
+        width: 100%;
+        list-style-type: none;
+    }
+    #header li s {
+        display: inline-block;
+        width: 180px;
+        height: 10px;
+        border-bottom: #828282 1px dotted;
+        margin: 0 20px 11px 8px;
+    }
+    .toolbar-background-md {
+        background-color: #387ef5 !important;
+    }
+    .toolbar-background {
+        background-color: #387ef5 !important;
+    }
+    .toolbar-title-md {
+        color: white !important;
+    }
+    .home_header {
+        background-color: #387ef5;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+    .home_header .row {
+        width: 100%;
+        padding: 20px;
+    }
+    .home_header span {
+        font-size: 40px;
+        width: 100%;
+        color: whitesmoke;
+    }
+    .home_header span i {
+        font-size: 5px;
+        margin-left: 20px;
+        font-style: normal;
+    }
+    .homeBtn {
+        height: 60px;
+        width: 60px;
+        text-align: center;
+        background-color: #387ef5;
+        color: white;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 3px;
+        padding-top: 22px;
+        border-radius: 50%;
+        margin-left: 8px;
+        display: inline-block;
+    }
+    .back-button {
+        color: white !important;
+    }
+    .header {
+        height: 30px;
+    }
+    .footer_tab {
+        width: 100%;
+        height: 35px;
+    }
+    .footer_tab ul li {
+        margin-top: 8px;
+        float: left;
+        list-style-type: none;
+        text-align: center;
+        color: black;
+    }
+    .footer_tab ul li a {
+        padding-bottom: 3px;
+        text-decoration: none;
+        color: black;
+    }
+    .footer_tab .current {
+        border-bottom: 3px solid orangered;
+    }
+    .tab_width3 li {
+        width: 33%;
+    }
+    .tab_width2 li {
+        width: 50%;
+    }
+    .tab_width4 li {
+        width: 25%;
+    }
+    .gray {
+        background-color: gray !important;
+    }
+    .commentAdd {
+        width: 100%;
+    }
+    .commentAdd li {
+        float: right;
+        list-style-type: none;
+    }
+    .commentAdd .text-input {
+        border-bottom: 3px solid #387ef5;
+    }
+    .homeBtnList {
+        width: 100%;
+    }
+    .homeBtnList li {
+        float: left;
+        list-style-type: none;
+        text-align: center;
+    }
+    .card-background-page {
+        ion-card {
+            position: relative;
+            text-align: center;
+        }
+        .card-title {
+            position: absolute;
+            top: 36%;
+            font-size: 2.0em;
+            width: 100%;
+            font-weight: bold;
+            color: #fff;
+        }
+        .card-subtitle {
+            font-size: 1.0em;
+            position: absolute;
+            top: 52%;
+            width: 100%;
+            color: #fff;
+        }
+    }
+}
