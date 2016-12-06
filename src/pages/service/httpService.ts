@@ -21,7 +21,6 @@ export class HttpService {
 
     getAuthToken(callback: Function) {
 
-        this.cookie.setCookie('authToken', 'NOAddZH5AdApSyv8FNu5cl-1zGmFuVqfaHw8Zpi03cG0DZAqQ7Nu7Hfe8zrICAVcaks_bvlPUF_SfD1pHvbIy9bRGmnhuoBCyZpCtAK4TspBkamV-hSnxsuW4T2ztWdtdrVp2SXZrhNE4Mm_3NrXzOYvV_jZaI-0VJZ6Z5qfjPWoh8Ui8xPEFdcqA-5kPdZk6AgZFLP6UoPKSUs31PoiDw', 0);
         let authToken = this.cookie.getCookie('authToken');
         if (authToken) {
             if (callback) {
