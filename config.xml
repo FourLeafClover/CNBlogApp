@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.mobileblog.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>博客</name>
-    <description>基于Cordova的博客园App</description>
+    <name>MBlog</name>
+    <description>基于Cordova的博客App</description>
     <author email="zc_smile@outlook.com" href="http://www.cnblogs.com/FourLeafCloverZc/">张聪</author>
     <content src="index.html" />
     <access origin="*" />
