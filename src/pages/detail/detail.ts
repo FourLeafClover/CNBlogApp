@@ -92,10 +92,16 @@ export class DetailPage {
     private toastCtrl: ToastController,
     private loadCtrl: LoadingController) {
     this.blogSummary = this.navParams.data;
-    httpService.get({
-      url: `api/blogposts/${this.blogSummary.Id}/body`
-    }, (result) => {
-      this.detail = result;
-    })
+
+    // 部分会获取报错
+    try {
+      httpService.get({
+        url: `api/blogposts/${this.blogSummary.Id}/body`
+      }, (result) => {
+        this.detail = result;
+      })
+    } catch (ex) {
+
+    }
   }
 }

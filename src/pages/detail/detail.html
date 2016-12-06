@@ -16,10 +16,10 @@
             {{blogSummary.Title}}
         </h1>
         <p>
-            Author:{{blogSummary.Author}} View:{{blogSummary.ViewCount}}
+            Author:{{blogSummary.Author}} Views:{{blogSummary.ViewCount}}
         </p>
         <p>
-            Posted:{{blogSummary.PostDate}}
+            Posted:{{blogSummary.PostDate.substring(0,10)}}
         </p>
     </div>
     <div [innerHtml]="detail" style="padding:15px;" id='detail_content'>
