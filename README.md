@@ -67,3 +67,5 @@
     
   ```
   * 登录功能loaclhost服务无法使用,调用了登录接口,登录接口与其他接口的基地址不一样，导致登录后服务端Header添加的Cookie没法传递到其他接口服务里面，PS：手机端是可以的,因为手机端是一个宿主，不想本地服务每个不同的API基地址设置了不同代理,相当于不同的宿主，导致Cookie不能共享
+  * 下载地址: http://files.cnblogs.com/files/FourLeafCloverZc/CNBlog.small.zip
+  * 博客地址: http://www.cnblogs.com/FourLeafCloverZc/p/6143139.html
