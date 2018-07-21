@@ -3,7 +3,7 @@
   <div class="header">
     <!--<img :src="item.author.avatar" alt="">-->
     <div class="name">{{item.author.name}}</div>
-    <div class="time">{{item.published | dateFormat}}</div>
+    <div class="time">发布于: {{item.published | dateFormat}}</div>
   </div>
   <div class="content">{{item.content.trim()}}</div>
 </div>

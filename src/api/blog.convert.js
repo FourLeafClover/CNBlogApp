@@ -31,7 +31,8 @@ export function getHomePageConvert (data) {
       title: getText(item.title),
       published: getText(item.published),
       comments: getText(item.comments),
-      link: item.link._attr.href._value
+      link: item.link._attr.href._value,
+      diggs: getText(item.diggs)
     }
   })
 }

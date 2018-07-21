@@ -1,15 +1,8 @@
-export function copy (text, success, fail) {
-  if (window.plugins && window.plugins.clipboardManager) {
-    window.plugins.clipboardManager.copy(
-      text,
-      function (r) {
-        if (success) {
-          success(r)
-        }
-      },
-      function (e) {
-        fail(e)
-      }
-    )
+export function copy (text) {
+  if (window.cordova && window.cordova.plugins.clipboard) {
+    window.cordova.plugins.clipboard.copy.copy(text)
+    window.$vm.$toast({
+      messsage: '复制成功'
+    })
   }
 }

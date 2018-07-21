@@ -8,7 +8,7 @@
     </div>
     <div class="summary" @click="goDetail">{{item.summary}}
     </div>
-    <div class="opt"> <span class="name" @click="gotoZone">{{item.author.name}}</span> 阅读: {{ item.views }} &nbsp; 发布于: {{ item.published | dateFormat }}
+    <div class="opt"> <span class="name" @click="gotoZone">{{item.author.name}}</span> 阅读: {{ item.views }}   推荐: {{item.diggs}}   发布于: {{ item.published | dateFormat }}
     </div>
   </div>
 </template>

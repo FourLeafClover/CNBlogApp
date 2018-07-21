@@ -36,11 +36,7 @@ export default {
       this.vShow = false
     },
     copy () {
-      nativeCopy(this.message + '  ' + this.link, () => {
-        this.$toast({
-          message: '复制成功,感觉前去分享吧!'
-        })
-      })
+      nativeCopy(this.title + '  ' + this.link)
     }
   },
   watch: {
