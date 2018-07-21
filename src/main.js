@@ -9,6 +9,7 @@ import i18n from './language'
 require('./filters')
 require('./components')
 require('./assets/styles/base.scss')
+Vue.prototype.historyLength = 0
 Vue.use(vant)
 Vue.config.productionTip = false
 let $vm = new Vue({

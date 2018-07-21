@@ -3,7 +3,13 @@
 </template>
 <script>
 export default {
-  name: 'vLoading'
+  name: 'vLoading',
+  props: {
+    fixed: {
+      type: Boolean,
+      default: false
+    }
+  }
 }
 </script>
 

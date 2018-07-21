@@ -4,7 +4,8 @@
     <div class="header">
       <div class="title">{{detail.Title}}</div>
       <div class="author">
-        <span class="name">{{detail.SourceName}}</span>{{detail.SubmitDate | dateFormat}}
+        <span class="name">{{detail.SourceName}}</span>
+        <span class="date">发布于: {{detail.SubmitDate | dateFormat}}</span>
       </div>
     </div>
     <v-markdown :html="detail.Content"></v-markdown>
@@ -15,12 +16,8 @@
         <img slot="icon" slot-scope="props" src="@/assets/icon/share.png">
       </van-tabbar-item>
       <van-tabbar-item icon="shop" @click="showComment=true">
-        <span>评论</span>
+        <span>查看评论</span>
         <img slot="icon" slot-scope="props" src="@/assets/icon/comment.png">
-      </van-tabbar-item>
-      <van-tabbar-item icon="shop" @click="voteNews">
-        <span>推荐</span>
-        <img slot="icon" slot-scope="props" src="@/assets/icon/like.png">
       </van-tabbar-item>
     </van-tabbar>
     <v-share :show.sync="showShare" :link="link" :title="detail.Title"></v-share>
@@ -33,10 +30,7 @@
         <v-loading v-if="commentIsLoading"></v-loading>
       </div>
       <van-cell-group class="addComment">
-      <van-field type='text' v-model="commentInput" autosize center clearable placeholder="我来说两句">
-        <van-button slot="button" size="small" type="primary" @click="sendComment">发送</van-button>
-      </van-field>
-    </van-cell-group>
+      </van-cell-group>
     </van-actionsheet>
   </div>
 </v-back-layout>
@@ -51,7 +45,10 @@ import {
   getNewsDetail,
   getNewsComment
 } from '@/api/news'
-import { addNewsComment, voteNews as voteNewsApi } from '@/api/user'
+import {
+  addNewsComment,
+  voteNews as voteNewsApi
+} from '@/api/user'
 export default {
   data () {
     return {
@@ -87,7 +84,6 @@ export default {
     },
     sendComment () {
       addNewsComment(this.commentInput, this.$route.query.id).then(res => {
-        alert(res)
         this.$toast({
           message: res
         })
@@ -95,12 +91,9 @@ export default {
     },
     voteNews () {
       voteNewsApi(this.$route.query.id).then(res => {
-        alert(res)
-        if (res.IsSuccess) {
-          this.$toast({
-            message: '推荐成功'
-          })
-        }
+        this.$toast({
+          message: res.Message
+        })
       })
     }
   },
@@ -137,9 +130,16 @@ export default {
     color: gray;
     margin-bottom: 10px;
     padding-left: 10px;
+    position: relative;
     .name {
       margin-right: 5px;
       color: dodgerblue;
+      font-size: 14px;
+    }
+    .date {
+      font-size: 14px;
+      right: 20px;
+      position: absolute;
     }
   }
   .item {

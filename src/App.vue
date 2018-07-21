@@ -8,7 +8,7 @@
 
 <script>
 import routerConfig from '@/router/router'
-import { getAuthCookie } from '@/utils/user'
+import { initAuthCookie } from '@/utils/user'
 console.log(routerConfig)
 const cacheRouter = routerConfig.filter(x => x.meta.cache).map(x => x.name)
 console.log(cacheRouter)
@@ -21,43 +21,16 @@ export default {
     }
   },
   created () {
-    const token = getAuthCookie()
-    if (token) {
-      document.cookie = `.CNBlogsCookie=${token}`
-      document.addEventListener(
-        'deviceready',
-        function () {
-          if (window.cookieMaster) {
-            if (token) {
-              window.cookieMaster.setCookieValue(
-                'www.cnblogs.com',
-                '.CNBlogsCookie',
-                token,
-                function () {},
-                function (error) {
-                  this.$toast({
-                    message: '登录Token设置失败'
-                  })
-                  this.$toast({
-                    message: error
-                  })
-                }
-              )
-            }
-          }
-        },
-        false
-      )
-    }
+    initAuthCookie()
   },
   watch: {
     $route (to, from) {
       if (to.meta.index > from.meta.index) {
-        this.$set(this.$data, 'transitionName', 'slide-left')
+        this.transitionName = 'slide-left'
       } else if (to.meta.index < from.meta.index) {
-        this.$set(this.$data, 'transitionName', 'slide-right')
+        this.transitionName = 'slide-right'
       } else {
-        this.$set(this.$data, 'transitionName', 'slide-none')
+        this.transitionName = 'slide-none'
       }
     }
   }

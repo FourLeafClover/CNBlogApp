@@ -1,6 +1,6 @@
 <template>
   <div class="item">
-    <div class="header">
+    <div class="header" style="display:none">
       <img :src="item.author.avatar" @click="gotoZone" alt="">
       <div class="name" @click="gotoZone">{{item.author.name}}</div>
     </div>
@@ -8,7 +8,7 @@
     </div>
     <div class="summary" @click="goDetail">{{item.summary}}
     </div>
-    <div class="opt">阅读:{{ item.views }} 创建于: {{ item.published | dateFormat }}
+    <div class="opt"> <span class="name" @click="gotoZone">{{item.author.name}}</span> 阅读: {{ item.views }} &nbsp; 发布于: {{ item.published | dateFormat }}
     </div>
   </div>
 </template>
@@ -24,13 +24,13 @@ export default {
   created () {},
   methods: {
     goDetail () {
-      this.$router.push(
-        `/blogdetail?id=${this.item.id}&title=${this.item.title}&author=${
+      this.$router.push({
+        path: `/blogdetail?id=${this.item.id}&title=${this.item.title}&author=${
           this.item.author.name
         }&blogapp=${this.item.blogapp}&link=${this.item.link}&published=${
           this.item.published
         }`
-      )
+      })
     },
     gotoZone () {
       this.$router.push(
@@ -45,25 +45,9 @@ export default {
   padding: 10px;
   margin-bottom: 5px;
   box-shadow: 0 5px #eee;
-  .header {
-    height: 30px;
-    position: relative;
-    img {
-      width: 30px;
-      border-radius: 50%;
-    }
-    .name {
-      position: absolute;
-      left: 40px;
-      top: 0px;
-      line-height: 30px;
-      color: dodgerblue;
-    }
-  }
   .title {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 10px;
   }
   .summary {
     margin-top: 10px;
@@ -76,6 +60,10 @@ export default {
     color: gray;
     font-size: 12px;
     margin-top: 10px;
+    .name{
+      color: dodgerblue;
+      margin-right: 10px;
+    }
   }
 }
 </style>

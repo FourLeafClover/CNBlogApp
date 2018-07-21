@@ -1,6 +1,6 @@
 <template>
 <v-layout class="home" :active="1">
-  <van-tabs>
+  <van-tabs :swipeable="true">
     <div class="logo"><img src="@/assets/icon/blog_logo.png" /></div>
     <van-tab class="tabs" swipeable v-for="(tab,index) in blogs" :title="tab.name" :key="index">
       <div class="items" v-if="tab.name==='最新'">

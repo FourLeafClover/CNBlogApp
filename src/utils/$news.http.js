@@ -16,7 +16,7 @@ instance.interceptors.request.use(function (config) {
 })
 
 instance.interceptors.response.use(function (response) {
-  if (response.data.Message.indexOf('登录')) {
+  if (response.data.Message.indexOf('登录') >= 0) {
     response.data.Message = '请重新设置登录Cookie'
   }
   return response.data

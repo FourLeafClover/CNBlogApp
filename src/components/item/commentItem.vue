@@ -20,31 +20,27 @@ export default {
   name: 'vCommentItem'
 }
 </script>
+
 <style lang="scss" scoped>
 .item {
   padding: 10px;
   margin-bottom: 5px;
   box-shadow: 0 5px #eee;
+  position: relative;
   .header {
-    height: 30px;
-    position: relative;
-    width: 100%;
-    img {
-      width: 30px;
-      border-radius: 50%;
-    }
+    display: inline-block;
+    height: 25px;
     .name {
       position: absolute;
-      top: 0px;
-      line-height: 30px;
-      color: dodgerblue;
+      left: 10px;
+      font-size: 14px;
+      font-weight: bold;
     }
-    .time{
+    .time {
       position: absolute;
-      right: 10px;
-      line-height: 30px;
-      color: dodgerblue;
-      font-size: 12px;
+      right: 15px;
+      font-size: 14px;
+      color: gray;
     }
   }
   .title {
@@ -52,8 +48,7 @@ export default {
     font-weight: bold;
     margin-top: 10px;
   }
-  .content{
-    margin-top: 10px;
+  .content {
     font-size: 14px;
     color: gray;
     line-height: 20px;

@@ -35,7 +35,7 @@ let configs = [{
   component: () => import('@/views/BlogDetail.vue'),
   meta: {
     needAuth: false,
-    index: 0,
+    index: 10,
     cache: false
   }
 }, {
@@ -44,7 +44,7 @@ let configs = [{
   component: () => import('@/views/NewsDetail.vue'),
   meta: {
     needAuth: false,
-    index: 0,
+    index: 10,
     cache: false
   }
 }, {
@@ -53,7 +53,7 @@ let configs = [{
   component: () => import('@/views/BlogZone.vue'),
   meta: {
     needAuth: false,
-    index: 0,
+    index: 10,
     cache: false
   }
 }

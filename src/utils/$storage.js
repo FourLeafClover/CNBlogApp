@@ -21,7 +21,7 @@ export function setItem (key, value) {
     type: '',
     data: null
   }
-  if (typeof (key) === 'string') {
+  if (typeof (value) === 'string') {
     data.type = 'string'
     data.data = value
   } else if (typeof (value) === 'number') {
@@ -37,5 +37,5 @@ export function setItem (key, value) {
 }
 
 export function clearItem (key) {
-  window.localStorage.setItem(key, '')
+  window.localStorage.removeItem(key)
 }

@@ -1,12 +1,9 @@
 <template>
 <div class="item">
-  <div class="header">
-    <div class="name">{{item.sourceName}}</div>
-  </div>
   <div class="title" @click="gotoDetail">{{item.title}}</div>
   <div class="summary" @click="gotoDetail">{{item.summary}}
   </div>
-  <div class="opt">阅读:{{ item.views }} 创建于:{{ item.published | dateFormat }}</div>
+  <div class="opt"> <span class="name">{{item.sourceName}}</span> 阅读: {{ item.views }} &nbsp; 发布于: {{ item.published | dateFormat }}</div>
 </div>
 </template>
 
@@ -34,24 +31,9 @@ export default {
   padding: 10px;
   margin-bottom: 5px;
   box-shadow: 0 5px #eee;
-  .header {
-    height: 30px;
-    position: relative;
-    img {
-      width: 30px;
-      border-radius: 50%;
-    }
-    .name {
-      position: absolute;
-      top: 0px;
-      line-height: 30px;
-      color: dodgerblue;
-    }
-  }
   .title {
     font-size: 18px;
     font-weight: bold;
-    margin-top: 10px;
   }
   .summary {
     margin-top: 10px;
@@ -63,6 +45,10 @@ export default {
     color: gray;
     font-size: 12px;
     margin-top: 10px;
+    .name{
+      color: dodgerblue;
+      margin-right: 10px;
+    }
   }
 }
 </style>

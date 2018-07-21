@@ -4,7 +4,8 @@
     <div class="title">{{this.$route.query.title}}
     </div>
     <div class="author">
-      <span class="name">{{this.$route.query.author}}</span>{{this.$route.query.published | dateFormat}}
+      <span class="name" @click="gotoZone">{{this.$route.query.author}}</span>
+      <span class="date">发布于: {{this.$route.query.published | dateFormat}}</span>
     </div>
   </div>
   <v-loading v-if="body==''"></v-loading>
@@ -116,6 +117,10 @@ export default {
           this.commentInput = ''
         }
       })
+    },
+    gotoZone () {
+      const query = this.$route.query
+      return this.$router.push(`/blogapp?name=${query.author}&blogapp=${query.blogapp}`)
     }
   },
   computed: {
@@ -146,13 +151,19 @@ export default {
   }
   .author {
     color: gray;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding-left: 10px;
+    position: relative;
     .name {
       margin-right: 5px;
       color: dodgerblue;
+      font-size: 14px;
     }
-    margin-bottom: 10px;
+    .date {
+      font-size: 14px;
+      right: 20px;
+      position: absolute;
+    }
   }
   .item {
     padding: 10px;
@@ -169,6 +180,20 @@ export default {
     overflow: scroll;
     padding-bottom: 55px;
     box-sizing: border-box;
+    .header {
+      display: inline-block;
+      height: 30px;
+      .name{
+        position: absolute;
+        left: 10px;
+        font-size: 12px;
+      }
+      .date{
+        position: absolute;
+        left: 10px;
+        font-size: 12px;
+      }
+    }
   }
   .addComment {
     position: absolute;
