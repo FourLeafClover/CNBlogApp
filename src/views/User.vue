@@ -5,7 +5,7 @@
       <img src="@/assets/icon/default_avatar.png" />
     </div>
     <div v-else class="loginHeader">
-      <img class="img" :src="user.avatar" />
+      <img class="img" :src="user.avatar|imgConvert" />
       <div class="name">{{user.title}}</div>
       <div class="blogapp">博客ID : {{user.blogapp}}</div>
     </div>

@@ -21,7 +21,7 @@ export function getHomePageConvert (data) {
       id: getText(item.id),
       author: {
         name: getText(item.author.name),
-        avatar: 'https://images.weserv.nl/?url=' + getText(item.author.avatar).replace('http://', ''),
+        avatar: getText(item.author.avatar),
         uri: getText(item.author.uri),
         blogapp: getBlogApp(item)
       },
