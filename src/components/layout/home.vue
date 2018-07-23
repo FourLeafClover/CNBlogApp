@@ -20,7 +20,7 @@
       <span>新闻</span>
       <img slot="icon" slot-scope="props" src="@/assets/icon/news.png">
     </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active==3" @click.native="go('/about')">
+    <van-tabbar-item icon="shop" v-show="active==3" @click.native="go('/user')">
       <span class="on">我的</span>
       <img slot="icon"  slot-scope="props" src="@/assets/icon/user_on.png">
     </van-tabbar-item>
@@ -43,6 +43,7 @@ export default {
   },
   methods: {
     go (url) {
+      debugger
       if (!window.location.href.endsWith(url)) {
         this.$router.push(url)
       }
