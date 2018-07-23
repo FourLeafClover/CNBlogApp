@@ -17,7 +17,7 @@
     <van-cell title="进入主页" @click="gotoZone" v-if="user" is-link>
       <img slot="icon" class="cell-icon" src="@/assets/icon/qzone.png" />
     </van-cell>
-    <van-cell title="设置登录Cookie" @click="editCookieShow=true" is-link>
+    <van-cell title="更新登录Cookie" v-if="user" @click="editCookieShow=true" is-link>
       <img slot="icon" class="cell-icon" src="@/assets/icon/update.png" />
     </van-cell>
     <van-cell title="关于" is-link>
@@ -29,7 +29,7 @@
   </van-cell-group>
   <van-actionsheet v-model="showLogin" title="登录">
     <van-cell-group>
-      <van-field v-model="blogApp" type="text" placeholder="请输入登录名,用于获取头像,非必填" rows="1" autosize />
+      <van-field v-model="blogApp" type="text" placeholder="请输入登录名" rows="1" autosize />
       <van-field v-model.trim="cookie" style="border-bottom: 2px solid #e8e8e8" type="textarea" placeholder="请输入.CNBlogsCookie" rows="5" autosize />
     </van-cell-group>
     <div>
@@ -72,18 +72,21 @@ export default {
   },
   methods: {
     login () {
-      if (this.blogApp) {
+      if ((this.blogApp !== '') && (this.cookie !== '')) {
         loadUser(this.blogApp).then(res => {
           if (res) {
             setUser(res)
             this.user = res
+            setAuthCookie(this.cookie)
           }
         })
+
+        this.showLogin = false
+      } else {
+        this.$toast({
+          message: '请输入登录名和博客园Cookie'
+        })
       }
-      if (this.cookie) {
-        setAuthCookie(this.cookie, '')
-      }
-      this.showLogin = false
     },
     logout () {
       removeUser()
@@ -91,8 +94,8 @@ export default {
       this.user = null
     },
     updateCookie () {
-      if (this.cookie && this.newsCookie) {
-        setAuthCookie(this.cookie, this.newsCookie)
+      if (this.cookie) {
+        setAuthCookie(this.cookie)
       }
       this.editCookieShow = false
     },

@@ -35,7 +35,7 @@
       <v-loading v-if="commentIsLoading"></v-loading>
     </div>
     <van-cell-group class="addComment">
-      <van-field type='text' v-model="commentInput" autosize center clearable placeholder="我来说两句">
+      <van-field type='text' v-model.trim="commentInput" autosize center clearable placeholder="我来说两句">
         <van-button slot="button" size="small" type="primary" @click="sendComment">发送</van-button>
       </van-field>
     </van-cell-group>

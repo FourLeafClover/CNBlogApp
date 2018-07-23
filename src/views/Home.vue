@@ -52,7 +52,6 @@ export default {
     }
   },
   mounted () {
-    console.log('mounted')
     this.loadBlogs()
     get48Top().then(res => {
       this.blogs[2].items.push(...res)

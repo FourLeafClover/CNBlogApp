@@ -1,5 +1,6 @@
 module.exports = {
   baseUrl: './',
+  productionSourceMap: false,
   devServer: {
     port: 7878,
     proxy: {

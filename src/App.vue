@@ -21,7 +21,6 @@ export default {
   },
   created () {
     initAuthCookie()
-    console.log(this.include)
   },
   watch: {
     $route (to, from) {
