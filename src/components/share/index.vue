@@ -36,7 +36,7 @@ export default {
       this.vShow = false
     },
     copy () {
-      nativeCopy(this.title + '  ' + this.link)
+      nativeCopy(`${this.title}\n${this.link}`)
     }
   },
   watch: {

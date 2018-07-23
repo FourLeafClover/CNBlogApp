@@ -32,7 +32,7 @@ export function getHomePageConvert (data) {
       published: getText(item.published),
       comments: getText(item.comments),
       link: item.link._attr.href._value,
-      diggs: getText(item.diggs)
+      diggs: getText(item.diggs) ? getText(item.diggs) : 0
     }
   })
 }

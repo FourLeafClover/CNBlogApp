@@ -1,60 +1,54 @@
 let configs = [{
   path: '/',
-  name: 'home',
+  name: 'page-home',
   component: () =>
     import('@/views/Home.vue'),
   meta: {
     needAuth: false,
-    index: 0,
     cache: true
   }
 },
 {
   path: '/user',
-  name: 'user',
+  name: 'page-user',
   component: () =>
     import('@/views/User.vue'),
   meta: {
     needAuth: false,
-    index: 0,
     cache: true
   }
 }, {
   path: '/news',
-  name: 'news',
+  name: 'page-news',
   component: () =>
     import('@/views/News.vue'),
   meta: {
     needAuth: false,
-    index: 0,
     cache: true
   }
 }, {
   path: '/blogdetail',
-  name: 'blogdetail',
+  name: 'page-blogdetail',
   component: () => import('@/views/BlogDetail.vue'),
   meta: {
     needAuth: false,
-    index: 10,
     cache: false
   }
 }, {
   path: '/newsdetail',
-  name: 'newsdetail',
+  name: 'page-newsdetail',
   component: () => import('@/views/NewsDetail.vue'),
   meta: {
     needAuth: false,
-    index: 10,
     cache: false
   }
 }, {
   path: '/blogapp',
-  name: 'blogapp',
-  component: () => import('@/views/BlogZone.vue'),
+  name: 'page-blogapp',
+  component: () => import('@/views/BlogApp.vue'),
   meta: {
     needAuth: false,
-    index: 10,
-    cache: false
+    cache: true
   }
 }
 ]

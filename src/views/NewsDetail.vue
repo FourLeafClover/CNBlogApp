@@ -50,6 +50,7 @@ import {
   voteNews as voteNewsApi
 } from '@/api/user'
 export default {
+  name: 'page-newsdetail',
   data () {
     return {
       detail: null,

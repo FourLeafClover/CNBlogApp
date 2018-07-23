@@ -1,5 +1,5 @@
 <template>
-<v-back-layout class="blog" title="博客详情">
+<v-back-layout class="blog" :class="$route.name" title="博客详情">
   <div class="header">
     <div class="title">{{this.$route.query.title}}
     </div>
@@ -53,6 +53,7 @@ import {
   addComment
 } from '@/api/user'
 export default {
+  name: 'page-blogdetail',
   data () {
     return {
       body: '',
@@ -120,7 +121,7 @@ export default {
     },
     gotoZone () {
       const query = this.$route.query
-      return this.$router.push(`/blogapp?name=${query.author}&blogapp=${query.blogapp}`)
+      return this.push(`/blogapp?name=${query.author}&blogapp=${query.blogapp}`)
     }
   },
   computed: {

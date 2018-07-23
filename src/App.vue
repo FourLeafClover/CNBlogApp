@@ -1,38 +1,44 @@
 <template>
 <transition :name="transitionName">
-    <keep-alive :include="exclude">
+    <keep-alive :include="include">
       <router-view class="router-view"></router-view>
     </keep-alive>
   </transition>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import routerConfig from '@/router/router'
 import { initAuthCookie } from '@/utils/user'
-console.log(routerConfig)
 const cacheRouter = routerConfig.filter(x => x.meta.cache).map(x => x.name)
-console.log(cacheRouter)
 export default {
   name: 'App',
   data () {
     return {
       transitionName: '',
-      exclude: cacheRouter.length > 0 ? cacheRouter.join(',') : ''
+      include: cacheRouter.length > 0 ? cacheRouter.join(',') : ''
     }
   },
   created () {
     initAuthCookie()
+    console.log(this.include)
   },
   watch: {
     $route (to, from) {
-      if (to.meta.index > from.meta.index) {
+      const pageAnimation = this.$store.state.app.pageAnimation
+      if (pageAnimation === 1) {
         this.transitionName = 'slide-left'
-      } else if (to.meta.index < from.meta.index) {
+      } else if (pageAnimation === -1) {
         this.transitionName = 'slide-right'
       } else {
         this.transitionName = 'slide-none'
       }
+      // 使用完毕后更新成0
+      this.UPDATE_PAGEANIMATION(0)
     }
+  },
+  methods: {
+    ...mapActions('app', ['UPDATE_PAGEANIMATION'])
   }
 }
 </script>

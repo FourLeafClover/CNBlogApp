@@ -1,5 +1,5 @@
 <template>
-<div class="layout">
+<div class="layout" :class="$route.name">
   <van-nav-bar
   :title="title"
   left-text="Back"
@@ -17,16 +17,18 @@ export default {
   props: {
     title: ''
   },
-  created () {},
+  created () {
+  },
   methods: {
     onClickLeft () {
-      this.$router.go(-1)
+      this.goBack(-1)
     }
   }
 }
 </script>
 <style lang="scss" scoped>
 .layout{
+  overflow: scroll;
   /deep/ .van-nav-bar{
     position: fixed;
     top: 0;

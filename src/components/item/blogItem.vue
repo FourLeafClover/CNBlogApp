@@ -8,7 +8,7 @@
     </div>
     <div class="summary" @click="goDetail">{{item.summary}}
     </div>
-    <div class="opt"> <span class="name" @click="gotoZone">{{item.author.name}}</span> 阅读: {{ item.views }}   推荐: {{item.diggs}}   发布于: {{ item.published | dateFormat }}
+    <div class="opt"> <span class="name" @click="gotoZone">{{item.author.name}}</span> 阅读: {{ item.views }} &nbsp;  推荐: {{item.diggs}} &nbsp;  发布于: {{ item.published | dateFormat }}
     </div>
   </div>
 </template>
@@ -24,7 +24,7 @@ export default {
   created () {},
   methods: {
     goDetail () {
-      this.$router.push({
+      this.push({
         path: `/blogdetail?id=${this.item.id}&title=${this.item.title}&author=${
           this.item.author.name
         }&blogapp=${this.item.blogapp}&link=${this.item.link}&published=${
@@ -33,7 +33,7 @@ export default {
       })
     },
     gotoZone () {
-      this.$router.push(
+      this.push(
         `/blogapp?blogapp=${this.item.blogapp}&name=${this.item.author.name}`
       )
     }

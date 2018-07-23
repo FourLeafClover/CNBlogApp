@@ -1,5 +1,5 @@
 <template>
-<div class="layout">
+<div class="layout" :class="$route.name">
   <div class="content">
     <slot></slot>
   </div>
@@ -54,6 +54,7 @@ export default {
 <style lang="scss" scoped>
 .layout{
   height: 100%;
+  overflow: scroll;
   .on{
     color: dodgerblue;
     font-weight: bold;

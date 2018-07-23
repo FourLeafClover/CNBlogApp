@@ -97,7 +97,7 @@ export default {
       this.editCookieShow = false
     },
     gotoZone () {
-      this.$router.push(
+      this.push(
         `/blogapp?name=${this.user.title}&blogapp=${this.user.blogapp}`
       )
     }

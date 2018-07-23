@@ -42,7 +42,7 @@ import {
 } from '@/api/news'
 
 export default {
-  name: 'home',
+  name: 'page-news',
   data () {
     return {
       news: [{

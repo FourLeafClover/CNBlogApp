@@ -18,16 +18,33 @@ import {
   loadBlogApp
 } from '@/api/blog'
 export default {
-  name: 'blogapp',
+  name: 'page-blogapp',
   data () {
     return {
       items: [],
       isLoading: false,
-      loadingComplete: false
+      loadingComplete: false,
+      scrollTop: 0,
+      blogapp: ''
     }
   },
   created () {
+    this.blogapp = this.$route.query.blogapp
     this.loadBlogs()
+  },
+  activated () {
+    if (this.$route.query.blogapp !== this.blogapp) {
+      this.blogapp = this.$route.query.blogapp
+      this.items = []
+      this.isLoading = false
+      this.loadingComplete = false
+      this.scrollTop = 0
+      this.loadBlogs()
+    }
+    this.$el.scrollTo(0, this.scrollTop)
+  },
+  deactivated () {
+    this.scrollTop = this.$el.scrollTop
   },
   methods: {
     loadBlogs () {

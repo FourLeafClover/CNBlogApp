@@ -31,7 +31,7 @@ import {
 } from '@/api/blog'
 
 export default {
-  name: 'home',
+  name: 'page-home',
   data () {
     return {
       blogs: [{
@@ -47,10 +47,12 @@ export default {
         items: []
       }
       ],
-      isLoadingAll: true
+      isLoadingAll: true,
+      scrollTop: 0
     }
   },
   mounted () {
+    console.log('mounted')
     this.loadBlogs()
     get48Top().then(res => {
       this.blogs[2].items.push(...res)
@@ -58,6 +60,12 @@ export default {
     get10TopDigg().then(res => {
       this.blogs[1].items.push(...res)
     })
+  },
+  activated () {
+    this.$el.querySelector('.items').scrollTo(0, this.scrollTop)
+  },
+  deactivated () {
+    this.scrollTop = this.$el.querySelector('.items').scrollTop
   },
   methods: {
     loadBlogs () {

@@ -9,7 +9,14 @@ import i18n from './language'
 require('./filters')
 require('./components')
 require('./assets/styles/base.scss')
-Vue.prototype.historyLength = 0
+Vue.prototype.push = function (location) {
+  this.$store.dispatch('app/UPDATE_PAGEANIMATION', 1)
+  this.$router.push(location)
+}
+Vue.prototype.goBack = function (index) {
+  this.$store.dispatch('app/UPDATE_PAGEANIMATION', -1)
+  this.$router.go(index)
+}
 Vue.use(vant)
 Vue.config.productionTip = false
 let $vm = new Vue({
@@ -19,3 +26,12 @@ let $vm = new Vue({
   render: h => h(App)
 }).$mount('#app')
 window.$vm = $vm
+document.addEventListener('deviceready', function () {
+  document.addEventListener('backbutton', function () {
+    if (window.$vm.$router.currentRoute === 'home') {
+      window.navigator.app.exitApp()
+    } else {
+      window.$vm.goBack(-1)
+    }
+  }, false)
+}, false)

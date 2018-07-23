@@ -20,7 +20,7 @@ export default {
   },
   methods: {
     gotoDetail () {
-      this.$router.push(`/newsdetail?id=${this.item.id}`)
+      this.push(`/newsdetail?id=${this.item.id}`)
     }
   }
 }
