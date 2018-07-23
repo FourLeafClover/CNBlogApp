@@ -28,7 +28,7 @@ let $vm = new Vue({
 window.$vm = $vm
 document.addEventListener('deviceready', function () {
   document.addEventListener('backbutton', function () {
-    if (window.$vm.$router.currentRoute === 'home') {
+    if (window.$vm.$router.currentRoute === 'page-home') {
       window.navigator.app.exitApp()
     } else {
       window.$vm.goBack(-1)
