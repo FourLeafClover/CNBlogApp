@@ -67,7 +67,7 @@ export default {
 .notice {
   text-align: center;
   line-height: 40px;
-  box-shadow: 0 5px #eee;
+  margin-bottom: 5px solid #eeeeee;
   color: gray;
 }
 </style>

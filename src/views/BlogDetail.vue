@@ -1,11 +1,11 @@
 <template>
 <v-back-layout class="blog" :class="$route.name" title="博客详情">
-  <div class="header">
-    <div class="title">{{this.$route.query.title}}
+  <div class="header" v-if="curItem">
+    <div class="title">{{curItem.title}}
     </div>
     <div class="author">
-      <span class="name" @click="gotoZone">{{this.$route.query.author}}</span>
-      <span class="date">发布于: {{this.$route.query.published | dateFormat}}</span>
+      <span class="name" @click="gotoZone">{{curItem.author.name}}</span>
+      <span class="date">发布于: {{curItem.published | dateFormat}}</span>
     </div>
   </div>
   <v-loading v-if="body==''"></v-loading>
@@ -62,12 +62,13 @@ export default {
       comments: [],
       commentLoadComplete: false,
       commentIsLoading: false,
-      commentInput: ''
+      commentInput: '',
+      curItem: this.$route.params
     }
   },
   created () {
     this.body = ''
-    loadBlogBody(this.$route.query.id).then(res => {
+    loadBlogBody(this.$route.params.id).then(res => {
       this.body = res
     })
     this.loadComments()
@@ -76,7 +77,7 @@ export default {
     loadComments () {
       this.commentIsLoading = true
       let page = this.comments.length / 50 + 1
-      getBlogComment(this.$route.query.id, page, 50).then(res => {
+      getBlogComment(this.$route.params.id, page, 50).then(res => {
         this.comments.push(...res)
         if (res.length < 50) {
           this.commentLoadComplete = true
@@ -138,7 +139,7 @@ export default {
 <style lang="scss" scoped>
 .blog {
   .header {
-    box-shadow: 0 5px #eeeeee;
+    border-bottom: 5px solid #eeeeee;
     padding-bottom: 5px;
     margin-bottom: 20px;
   }
@@ -174,7 +175,7 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align: center;
-    box-shadow: 0px 5px #e5e5e5;
+    border-bottom: 5px solid #eeeeee;
   }
   .comments {
     height: 80vh;

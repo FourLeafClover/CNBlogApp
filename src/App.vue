@@ -24,16 +24,22 @@ export default {
   },
   watch: {
     $route (to, from) {
-      const pageAnimation = this.$store.state.app.pageAnimation
-      if (pageAnimation === 1) {
-        this.transitionName = 'slide-left'
-      } else if (pageAnimation === -1) {
-        this.transitionName = 'slide-right'
+      if (this.$store.state.app.openPageAnimation) {
+        const pageAnimation = this.$store.state.app.pageAnimation
+        if (pageAnimation === 1) {
+          this.transitionName = 'slide-left'
+        } else if (pageAnimation === -1) {
+          this.transitionName = 'slide-right'
+        } else {
+          this.transitionName = 'slide-none'
+        }
+        // 使用完毕后更新成0
+        this.UPDATE_PAGEANIMATION(0)
       } else {
-        this.transitionName = 'slide-none'
+        if (this.transitionName !== 'slide-none') {
+          this.transitionName = 'slide-none'
+        }
       }
-      // 使用完毕后更新成0
-      this.UPDATE_PAGEANIMATION(0)
     }
   },
   methods: {

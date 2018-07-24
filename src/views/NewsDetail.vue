@@ -8,7 +8,7 @@
         <span class="date">发布于: {{detail.SubmitDate | dateFormat}}</span>
       </div>
     </div>
-    <v-markdown :html="detail.Content"></v-markdown>
+    <v-markdown :html="detail.Content" :convert="true"></v-markdown>
     <div style="height:50px"></div>
     <van-tabbar>
       <van-tabbar-item @click="()=>showShare=true">
@@ -115,7 +115,7 @@ export default {
 <style lang="scss" scoped>
 .news {
   .header {
-    box-shadow: 0 5px #eeeeee;
+    border-bottom: 5px solid #eeeeee;
     padding-bottom: 5px;
     margin-bottom: 20px;
   }
@@ -151,7 +151,7 @@ export default {
     white-space: nowrap;
     text-overflow: ellipsis;
     text-align: center;
-    box-shadow: 0px 5px #e5e5e5;
+    border-bottom: 5px solid #eeeeee;
   }
   .comments {
     height: 80vh;

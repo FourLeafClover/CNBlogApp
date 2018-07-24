@@ -24,9 +24,10 @@ export default {
 <style lang="scss" scoped>
 .item {
   padding: 10px;
-  margin-bottom: 5px;
-  box-shadow: 0 5px #eee;
+  margin-bottom: 5px solid #eeeeee;
   position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
   .header {
     display: inline-block;
     height: 25px;

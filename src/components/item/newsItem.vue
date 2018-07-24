@@ -29,8 +29,9 @@ export default {
 <style lang="scss" scoped>
 .item {
   padding: 10px;
-  margin-bottom: 5px;
-  box-shadow: 0 5px #eee;
+  border-bottom: 5px solid #eeeeee;
+  box-sizing: border-box;
+  overflow: hidden;
   .title {
     font-size: 18px;
     font-weight: bold;

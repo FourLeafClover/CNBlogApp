@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     go (url) {
-      debugger
       if (!window.location.href.endsWith(url)) {
         this.$router.push(url)
       }

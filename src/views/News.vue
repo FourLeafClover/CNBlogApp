@@ -145,12 +145,12 @@ export default {
       color: gray;
       padding: 5px 0px;
       text-align: center;
-      box-shadow: 0 5px #eee;
+      border-bottom: 5px solid #eeeeee;
     }
     .loadmore {
       text-align: center;
       line-height: 40px;
-      box-shadow: 0 5px #eee;
+      border-bottom: 5px solid #eeeeee;
       color: gray;
     }
   }

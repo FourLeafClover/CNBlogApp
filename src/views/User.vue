@@ -20,6 +20,10 @@
     <van-cell title="更新登录Cookie" v-if="user" @click="editCookieShow=true" is-link>
       <img slot="icon" class="cell-icon" src="@/assets/icon/update.png" />
     </van-cell>
+    <van-cell title="页面过渡动画">
+      <img slot="icon" class="cell-icon" src="@/assets/icon/setting.png" />
+      <van-switch class="right-icon" size='25px' v-model="isOpenPageAnimation" />
+    </van-cell>
     <van-cell title="关于" is-link @click="()=>this.push('/about')">
       <img slot="icon" class="cell-icon" src="@/assets/icon/about.png" />
     </van-cell>
@@ -58,6 +62,9 @@ import {
   removeUser,
   removeAuthCookie
 } from '@/utils/user'
+import {
+  mapActions
+} from 'vuex'
 export default {
   name: 'about',
   data () {
@@ -67,10 +74,12 @@ export default {
       cookie: '',
       newsCookie: '',
       user: getUser(),
-      editCookieShow: false
+      editCookieShow: false,
+      isOpenPageAnimation: this.$store.state.app.openPageAnimation
     }
   },
   methods: {
+    ...mapActions('app', ['OPEN_PAGEANIMATION']),
     login () {
       if ((this.blogApp !== '') && (this.cookie !== '')) {
         loadUser(this.blogApp).then(res => {
@@ -104,6 +113,11 @@ export default {
         `/blogapp?name=${this.user.title}&blogapp=${this.user.blogapp}`
       )
     }
+  },
+  watch: {
+    isOpenPageAnimation () {
+      this.OPEN_PAGEANIMATION(this.isOpenPageAnimation)
+    }
   }
 }
 </script>
@@ -113,6 +127,7 @@ export default {
   position: relative;
   height: 90px;
   background-color: #f8f8f8;
+  margin-bottom: 5px;
   img {
     margin-left: 20px;
     width: 50px;
@@ -146,6 +161,12 @@ export default {
     font-size: 14px;
     margin-top: 5px;
     color: gray;
+  }
+}
+
+.user {
+  /deep/ .van-cell {
+    border-bottom: 2px solid #eeeeee !important;
   }
 }
 
