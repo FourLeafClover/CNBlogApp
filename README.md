@@ -51,3 +51,6 @@ Cordova打包的时候需要引入如下Plugin,如果觉得运行慢可以自行
     3.博客详情[评论功能,推荐功能]
     
     4.新闻详情[新闻详情不提供评论和推荐功能,原因是新闻的接口,居然需要把所有的cookie都加进去,而博客的操作只需要加入.CNBlogsCookie这个cookie,个人觉得没太大比较了。基本上也就只有博客评论和推荐的人多,所以登录界面我也就只提供了.CNBlogsCookie的设置输入框。
+    
+下载地址:
+    http://images.cnblogs.com/cnblogs_com/FourLeafCloverZc/1226959/o_03f17e2c2b5632a675cd39f79613bf1e.png
