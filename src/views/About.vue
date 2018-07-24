@@ -5,15 +5,23 @@
       开发者
     </div>
     <div class="content">
-      张聪,90后单身大叔程序员一枚
+      中文名:张聪,英文名:Frank Zhang
     </div>
   </div>
-    <div class="item">
+  <div class="item">
     <div class="header">
       格言
     </div>
     <div class="content">
       因为没有翅膀,所以要努力奔跑
+    </div>
+  </div>
+  <div class="item">
+    <div class="header">
+      出生日期
+    </div>
+    <div class="content">
+      1992/02/02
     </div>
   </div>
   <div class="item">
@@ -56,19 +64,20 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
-.about{
+.about {
   background-color: #eeeeee;
-  .item{
+  .item {
     background-color: white;
     margin-bottom: 5px;
     padding: 10px;
     box-sizing: border-box;
-    .header{
+    .header {
       font-size: 16px;
       font-weight: bold;
     }
-    .content{
+    .content {
       margin-top: 10px;
       font-size: 14px;
       color: gray;
