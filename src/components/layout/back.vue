@@ -35,7 +35,7 @@ export default {
     left: 0;
     width: 100%;
   }
-  .content{
+  >.content{
     padding-top: 50px;
   }
 }

@@ -20,7 +20,7 @@
     <van-cell title="更新登录Cookie" v-if="user" @click="editCookieShow=true" is-link>
       <img slot="icon" class="cell-icon" src="@/assets/icon/update.png" />
     </van-cell>
-    <van-cell title="关于" is-link>
+    <van-cell title="关于" is-link @click="()=>this.push('/about')">
       <img slot="icon" class="cell-icon" src="@/assets/icon/about.png" />
     </van-cell>
     <van-cell title="退出登录" v-if="user!=null" @click="logout" is-link>

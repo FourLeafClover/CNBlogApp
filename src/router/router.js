@@ -50,6 +50,14 @@ let configs = [{
     needAuth: false,
     cache: true
   }
+}, {
+  path: '/about',
+  name: 'page-about',
+  component: () => import('@/views/About.vue'),
+  meta: {
+    needAuth: false,
+    cache: true
+  }
 }
 ]
 
