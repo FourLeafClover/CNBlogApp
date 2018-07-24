@@ -55,6 +55,6 @@ Cordova打包的时候需要引入如下Plugin,如果觉得运行慢可以自行
     
 扫码下载[Android SDK]:
      
-     ![avatar](http://images.cnblogs.com/cnblogs_com/FourLeafCloverZc/1226959/o_03f17e2c2b5632a675cd39f79613bf1e.png)
+ ![](http://images.cnblogs.com/cnblogs_com/FourLeafCloverZc/1226959/o_03f17e2c2b5632a675cd39f79613bf1e.png)
      
      
