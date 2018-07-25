@@ -58,6 +58,22 @@ let configs = [{
     needAuth: false,
     cache: true
   }
+}, {
+  path: '/bloggerrank',
+  name: 'page-bloggerrank',
+  component: () => import('@/views/BloggerRank.vue'),
+  meta: {
+    needAuth: false,
+    cache: true
+  }
+}, {
+  path: '/bloggersearch',
+  name: 'page-bloggersearch',
+  component: () => import('@/views/BloggerSearch.vue'),
+  meta: {
+    needAuth: false,
+    cache: true
+  }
 }
 ]
 

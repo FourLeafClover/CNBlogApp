@@ -25,7 +25,7 @@
       <img slot="icon" slot-scope="props" src="@/assets/icon/like.png">
     </van-tabbar-item>
   </van-tabbar>
-  <v-share :show.sync="showShare" :link="this.$route.query.link" :title="this.$route.query.title"></v-share>
+  <v-share :show.sync="showShare" :link="curItem.link" :title="curItem.title"></v-share>
   <van-actionsheet v-model="showComment" title="评论">
     <div class="comments">
       <v-comment-item v-for="(item,key) in comments" :item="item" :key="key"></v-comment-item>

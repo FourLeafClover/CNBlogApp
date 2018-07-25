@@ -1,5 +1,5 @@
 import $http from '../utils/$http'
-import { getHomePageConvert, getCommentConvert, userConvert } from '@/api/blog.convert'
+import { getHomePageConvert, getCommentConvert, userConvert, bloggerConvert } from '@/api/blog.convert'
 const xmltojson = require('xmltojson')
 const options = {
   mergeCDATA: true,
@@ -72,8 +72,26 @@ export function loadUser (blogApp) {
 }
 
 export function loadBlogApp (blogapp, page, pageSize) {
-  return $http.get(`blog/u/${blogapp}/posts/${page}/${pageSize}`).then(res => {
+  return $http.get(`/blog/u/${blogapp}/posts/${page}/${pageSize}`).then(res => {
     const data = getHomePageConvert(xmltojson.parseString(res, options))
+    return Promise.resolve(data)
+  }).catch(err => {
+    return Promise.reject(err)
+  })
+}
+
+export function loadBloggerRank (count) {
+  return $http.get(`/blog/bloggers/recommend/1/${count}`).then(res => {
+    const data = bloggerConvert(xmltojson.parseString(res, options))
+    return Promise.resolve(data)
+  }).catch(err => {
+    return Promise.reject(err)
+  })
+}
+
+export function searchBloggers (keyword) {
+  return $http.get(`/blog/bloggers/search?t=${keyword}`).then(res => {
+    const data = bloggerConvert(xmltojson.parseString(res, options))
     return Promise.resolve(data)
   }).catch(err => {
     return Promise.reject(err)

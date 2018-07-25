@@ -6,27 +6,35 @@
   <van-tabbar>
     <van-tabbar-item icon="shop" v-show="active==1" @click.native="go('/')">
       <span class="on">首页</span>
-      <img slot="icon"  slot-scope="props" src="@/assets/icon/blog_on.png" />
+      <img slot="icon" slot-scope="props" src="@/assets/icon/blog_on.png" />
     </van-tabbar-item>
     <van-tabbar-item icon="shop" v-show="active!=1" @click.native="go('/')">
       <span>首页</span>
-      <img slot="icon"  slot-scope="props" src="@/assets/icon/blog.png" />
+      <img slot="icon" slot-scope="props" src="@/assets/icon/blog.png" />
     </van-tabbar-item>
     <van-tabbar-item icon="shop" v-show="active==2" @click.native="go('/news')">
       <span class="on">新闻</span>
-      <img slot="icon"  slot-scope="props" src="@/assets/icon/news_on.png">
+      <img slot="icon" slot-scope="props" src="@/assets/icon/news_on.png">
     </van-tabbar-item>
     <van-tabbar-item icon="shop" v-show="active!=2" @click.native="go('/news')">
       <span>新闻</span>
       <img slot="icon" slot-scope="props" src="@/assets/icon/news.png">
     </van-tabbar-item>
+    <van-tabbar-item icon="shop" v-show="active==4" @click.native="go('/bloggerrank')">
+      <span class="on">排行榜</span>
+      <img slot="icon" slot-scope="props" src="@/assets/icon/rank_on.png">
+    </van-tabbar-item>
+    <van-tabbar-item icon="shop" v-show="active!=4" @click.native="go('/bloggerrank')">
+      <span>排行榜</span>
+      <img slot="icon" slot-scope="props" src="@/assets/icon/rank.png">
+    </van-tabbar-item>
     <van-tabbar-item icon="shop" v-show="active==3" @click.native="go('/user')">
       <span class="on">我的</span>
-      <img slot="icon"  slot-scope="props" src="@/assets/icon/user_on.png">
+      <img slot="icon" slot-scope="props" src="@/assets/icon/user_on.png">
     </van-tabbar-item>
     <van-tabbar-item icon="shop" v-show="active!=3" @click.native="go('/user')">
       <span>我的</span>
-      <img slot="icon"  slot-scope="props" src="@/assets/icon/user.png">
+      <img slot="icon" slot-scope="props" src="@/assets/icon/user.png">
     </van-tabbar-item>
   </van-tabbar>
 </div>
@@ -52,10 +60,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.layout{
+.layout {
   height: 100%;
   overflow: scroll;
-  .on{
+  .on {
     color: dodgerblue;
     font-weight: bold;
   }

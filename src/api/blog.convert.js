@@ -56,7 +56,7 @@ export function getCommentConvert (data) {
       }
     })
   } else {
-    return []
+    return null
   }
 }
 
@@ -64,7 +64,6 @@ export function userConvert (data) {
   const entry = data.feed.entry
   if (entry) {
     if (Array.isArray(entry)) {
-      alert('请输入精确名称,获取用户信息')
       return null
     } else {
       return {
@@ -73,6 +72,35 @@ export function userConvert (data) {
         id: getText(entry.id),
         title: getText(entry.title)
       }
+    }
+  } else {
+    return null
+  }
+}
+
+export function bloggerConvert (data) {
+  const entry = data.feed.entry
+  if (entry) {
+    if (Array.isArray(entry)) {
+      return entry.map(item => {
+        return {
+          blogapp: getText(item.blogapp),
+          postcount: getText(item.postcount),
+          avatar: getText(item.avatar),
+          name: getText(item.title),
+          updated: getText(item.updated)
+        }
+      })
+    } else {
+      return [
+        {
+          blogapp: getText(entry.blogapp),
+          postcount: getText(entry.postcount),
+          avatar: getText(entry.avatar),
+          name: getText(entry.title),
+          updated: getText(entry.updated)
+        }
+      ]
     }
   } else {
     return null

@@ -87,10 +87,13 @@ export default {
             setUser(res)
             this.user = res
             setAuthCookie(this.cookie)
+            this.showLogin = false
+          } else {
+            this.$toast({
+              message: '无法匹配用户,请重试输入'
+            })
           }
         })
-
-        this.showLogin = false
       } else {
         this.$toast({
           message: '请输入登录名和博客园Cookie'

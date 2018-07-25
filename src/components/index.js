@@ -7,7 +7,8 @@ import commentItem from './item/commentItem'
 import loading from './loading/loading'
 import back from './layout/back'
 import share from './share'
-import waves from './waves'
+import bloggerItem from './item/bloggerItem'
+import empty from './404/blogger404.vue'
 Vue.component(home.name, home)
 Vue.component(blogItem.name, blogItem)
 Vue.component(newsItem.name, newsItem)
@@ -16,4 +17,5 @@ Vue.component(commentItem.name, commentItem)
 Vue.component(loading.name, loading)
 Vue.component(back.name, back)
 Vue.component(share.name, share)
-Vue.component(waves.name, waves)
+Vue.component(bloggerItem.name, bloggerItem)
+Vue.component(empty.name, empty)
