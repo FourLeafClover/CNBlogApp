@@ -4,7 +4,7 @@
     <div class="title">{{curItem.title}}
     </div>
     <div class="author">
-      <span class="name" @click="gotoZone">{{curItem.author.name}}</span>
+      <span class="name" @click="gotoZone">{{curItem.author}}</span>
       <span class="date">发布于: {{curItem.published | dateFormat}}</span>
     </div>
   </div>
@@ -63,12 +63,12 @@ export default {
       commentLoadComplete: false,
       commentIsLoading: false,
       commentInput: '',
-      curItem: this.$route.params
+      curItem: this.$route.query
     }
   },
   created () {
     this.body = ''
-    loadBlogBody(this.$route.params.id).then(res => {
+    loadBlogBody(this.curItem.id).then(res => {
       this.body = res
     })
     this.loadComments()
@@ -77,7 +77,7 @@ export default {
     loadComments () {
       this.commentIsLoading = true
       let page = this.comments.length / 50 + 1
-      getBlogComment(this.$route.params.id, page, 50).then(res => {
+      getBlogComment(this.curItem.id, page, 50).then(res => {
         this.comments.push(...res)
         if (res.length < 50) {
           this.commentLoadComplete = true
@@ -86,10 +86,14 @@ export default {
       })
     },
     vote () {
-      voteBlog(this.$route.query.blogapp, this.$route.query.id, true).then(res => {
+      voteBlog(this.curItem.blogapp, this.curItem.id, true).then(res => {
         if (!res.IsSuccess) {
           this.$toast({
             message: res.Message
+          })
+        } else {
+          this.$toast({
+            message: '推荐成功'
           })
         }
       })
@@ -100,7 +104,7 @@ export default {
           message: '请输入评论'
         })
       }
-      addComment(this.$route.query.blogapp, this.$route.query.id, this.commentInput).then(res => {
+      addComment(this.curItem.blogapp, this.curItem.id, this.commentInput).then(res => {
         if (!res.IsSuccess) {
           this.$toast({
             message: res.Message
@@ -121,8 +125,7 @@ export default {
       })
     },
     gotoZone () {
-      const query = this.$route.query
-      return this.push(`/blogapp?name=${query.author}&blogapp=${query.blogapp}`)
+      return this.push(`/blogapp?name=${this.curItem.author}&blogapp=${this.curItem.blogapp}`)
     }
   },
   computed: {

@@ -56,7 +56,7 @@ export function loadBlogBody (id) {
 export function getBlogComment (id, page, pageSize) {
   return $http.get(`/blog/post/${id}/comments/${page}/${pageSize}`).then(res => {
     const data = getCommentConvert(xmltojson.parseString(res, options))
-    return Promise.resolve(data)
+    return Promise.resolve(data == null ? [] : data)
   }).catch(err => {
     return Promise.reject(err)
   })

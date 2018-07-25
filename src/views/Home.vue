@@ -4,11 +4,13 @@
     <div class="logo"><img src="@/assets/icon/blog_logo.png" /></div>
     <van-tab class="tabs" swipeable v-for="(tab,index) in blogs" :title="tab.name" :key="index">
       <div class="items" v-if="tab.name==='最新'">
-        <v-blog-item :item="item" :key="key" v-for="(item,key) in tab.items"></v-blog-item>
-        <div class="loadmore" @click="loadBlogs" v-if="!isLoadingAll">
-          点击加载更多
-        </div>
-        <v-loading v-else></v-loading>
+        <van-pull-refresh @refresh="onRefresh" v-model="isRefresh">
+          <v-blog-item :item="item" :key="key" v-for="(item,key) in tab.items"></v-blog-item>
+          <div class="loadmore" @click="loadBlogs" v-if="!isLoadingAll">
+            点击加载更多
+          </div>
+          <v-loading v-else></v-loading>
+        </van-pull-refresh>
       </div>
       <div class="items" v-if="tab.name==='推荐'">
         <div class="tip">最近10天推荐博客</div>
@@ -48,7 +50,8 @@ export default {
       }
       ],
       isLoadingAll: true,
-      scrollTop: 0
+      scrollTop: 0,
+      isRefresh: false
     }
   },
   mounted () {
@@ -78,6 +81,13 @@ export default {
         this.blogs[0].items.push(...res)
         this.isLoadingAll = false
       })
+    },
+    onRefresh () {
+      this.isRefresh = true
+      getHomePage(1, 20).then(res => {
+        this.blogs[0].items = res
+        this.isRefresh = false
+      })
     }
   }
 }
@@ -92,7 +102,7 @@ export default {
     z-index: 99;
     height: 40px;
     margin-top: 2px;
-    img{
+    img {
       height: 100%;
     }
   }

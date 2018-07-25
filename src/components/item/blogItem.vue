@@ -21,8 +21,7 @@ export default {
       default: null
     }
   },
-  created () {
-  },
+  created () {},
   methods: {
     goDetail () {
       /* this.push({
@@ -34,7 +33,14 @@ export default {
       }) */
       this.push({
         name: 'page-blogdetail',
-        params: this.item
+        query: {
+          id: this.item.id,
+          title: this.item.title,
+          author: this.item.author.name,
+          blogapp: this.item.blogapp,
+          link: this.item.link,
+          published: this.item.published
+        }
       })
     },
     gotoZone () {
@@ -65,7 +71,7 @@ export default {
     color: gray;
     font-size: 12px;
     margin-top: 10px;
-    .name{
+    .name {
       color: dodgerblue;
       margin-right: 10px;
     }

@@ -31,6 +31,7 @@ export default {
     search () {
       this.isLoading = true
       this.isShowEmpty = false
+      this.items = []
       searchBloggers(this.keyword).then(res => {
         this.isLoading = false
         if (res) {

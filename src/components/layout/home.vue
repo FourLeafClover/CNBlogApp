@@ -61,7 +61,6 @@ export default {
 
 <style lang="scss" scoped>
 .layout {
-  height: 100%;
   overflow: scroll;
   .on {
     color: dodgerblue;
