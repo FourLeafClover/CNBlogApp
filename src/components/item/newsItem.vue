@@ -32,6 +32,7 @@ export default {
   border-bottom: 5px solid #eeeeee;
   box-sizing: border-box;
   overflow: hidden;
+  width: 100%;
   .title {
     font-size: 18px;
     font-weight: bold;

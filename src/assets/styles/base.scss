@@ -47,14 +47,34 @@ img {
   outline-width: 0px;
   vertical-align: top;
 }
+
+.van-tab--active {
+  color: dodgerblue;
+  font-size: 18px;
+}
+.van-tab:active{
+  background-color: white
+}
+.van-tabs__line{
+  display: none;
+}
+
 .markdown{
   width: 100%;
   padding: 0 10px;
   box-sizing: border-box;
+  display: block;
+  word-break: break-all;
+  letter-spacing: 0.1em;
+  h1,h2,h3,h4,h5,h6{
+    margin: 10px 0px;
+    font-size: 18px;
+  }
   p{
     color: gray;
     margin-bottom: 10px;
     line-height: 20px;
+    font-size: 16px;
   }
   img{
     width: 100%;
@@ -70,15 +90,4 @@ img {
     overflow-x: auto;
     box-shadow: 1 1 2px gray;
   }
-}
-
-.van-tab--active {
-  color: dodgerblue;
-  font-size: 18px;
-}
-.van-tab:active{
-  background-color: white
-}
-.van-tabs__line{
-  display: none;
 }

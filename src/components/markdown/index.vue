@@ -1,7 +1,9 @@
 <template>
-  <div class="markdown" v-html="html">
-  </div>
+<div class="markdown">
+   <div v-html="html"></div>
+</div>
 </template>
+
 <script>
 import { ENV } from '@/config/conf'
 export default {
@@ -17,7 +19,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.convert)
     if (ENV === 'development') {
       // 开发模式图片做中转
       setTimeout(() => {
