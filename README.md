@@ -57,8 +57,8 @@ Cordova打包的时候需要引入如下Plugin,如果觉得运行慢可以自行
       所以登录界面我也就只提供了.CNBlogsCookie的设置输入框。
     
     
-扫码下载[Android SDK]:
+下载链接:
      
- ![](http://images.cnblogs.com/cnblogs_com/FourLeafCloverZc/1226959/o_03f17e2c2b5632a675cd39f79613bf1e.png)
+   https://fir.im/cnblog
      
      
