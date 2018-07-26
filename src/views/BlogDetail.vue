@@ -9,7 +9,7 @@
     </div>
   </div>
   <v-loading v-if="body==''"></v-loading>
-  <v-markdown :html="body"></v-markdown>
+  <v-markdown v-if="body!=''" :html="body"></v-markdown>
   <div style="height:70px"></div>
   <van-tabbar>
     <van-tabbar-item @click="()=>showShare=true">
@@ -26,7 +26,7 @@
     </van-tabbar-item>
   </van-tabbar>
   <v-share :show.sync="showShare" :link="curItem.link" :title="curItem.title"></v-share>
-  <van-actionsheet v-model="showComment" title="评论">
+  <van-actionsheet style="overflow:hidden" v-model="showComment" title="评论">
     <div class="comments">
       <v-comment-item v-for="(item,key) in comments" :item="item" :key="key"></v-comment-item>
       <div class="item" v-show="showLoadingMore" @click="loadComments">点击加载更多评论</div>
@@ -76,7 +76,7 @@ export default {
   methods: {
     loadComments () {
       this.commentIsLoading = true
-      let page = this.comments.length / 50 + 1
+      let page = Math.floor(this.comments.length / 50) + 1
       getBlogComment(this.curItem.id, page, 50).then(res => {
         this.comments.push(...res)
         if (res.length < 50) {
@@ -103,6 +103,7 @@ export default {
         this.$toast({
           message: '请输入评论'
         })
+        return
       }
       addComment(this.curItem.blogapp, this.curItem.id, this.commentInput).then(res => {
         if (!res.IsSuccess) {
@@ -181,8 +182,9 @@ export default {
     border-bottom: 5px solid #eeeeee;
   }
   .comments {
-    height: 80vh;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 90vh;
     padding-bottom: 55px;
     box-sizing: border-box;
     .header {
@@ -204,7 +206,7 @@ export default {
     position: absolute;
     bottom: 0;
     width: 100%;
-    border-top: 2px solid #eee
+    border-top: 2px solid #eeee;
   }
 }
 </style>

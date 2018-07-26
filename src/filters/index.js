@@ -9,7 +9,7 @@ const dateFormat = (str) => {
   } else if ((nowGetTime - dateGetTime) < (60 * 60 * 1000)) {
     return '1小时内发布'
   } else {
-    return new Date().toLocaleDateString()
+    return date.toLocaleDateString()
   }
 }
 

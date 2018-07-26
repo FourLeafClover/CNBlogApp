@@ -5,7 +5,7 @@
     <div class="name">{{item.author.name}}</div>
     <div class="time">发布于: {{item.published | dateFormat}}</div>
   </div>
-  <div class="content">{{item.content.trim()}}</div>
+  <div class="content" v-html="item.content.trim()"></div>
 </div>
 </template>
 
@@ -27,7 +27,6 @@ export default {
   margin-bottom: 5px solid #eeeeee;
   position: relative;
   box-sizing: border-box;
-  overflow: hidden;
   .header {
     display: inline-block;
     height: 25px;

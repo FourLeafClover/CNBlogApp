@@ -8,7 +8,7 @@
         <span class="date">发布于: {{detail.SubmitDate | dateFormat}}</span>
       </div>
     </div>
-    <v-markdown :html="detail.Content" :convert="true"></v-markdown>
+    <v-markdown v-if="detail.Content!=''" :html="detail.Content" ></v-markdown>
     <div style="height:50px"></div>
     <van-tabbar>
       <van-tabbar-item @click="()=>showShare=true">
@@ -21,7 +21,7 @@
       </van-tabbar-item>
     </van-tabbar>
     <v-share :show.sync="showShare" :link="link" :title="detail.Title"></v-share>
-    <van-actionsheet v-model="showComment" title="评论">
+    <van-actionsheet style="overflow:hidden" v-model="showComment" title="评论">
       <div class="comments">
         <v-comment-item v-for="(item,key) in comments" :item="item" :key="key"></v-comment-item>
         <div class="item" v-show="showLoadingMore" @click="loadComments">点击加载更多评论</div>
@@ -154,8 +154,9 @@ export default {
     border-bottom: 5px solid #eeeeee;
   }
   .comments {
-    height: 80vh;
-    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 90vh;
     padding-bottom: 55px;
     box-sizing: border-box;
   }

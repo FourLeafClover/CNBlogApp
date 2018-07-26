@@ -14,11 +14,11 @@ instance.interceptors.request.use(function (config) {
   // loading 1.5s后太出现,请求快的话就不需要出现
   config.loadingTimeOut = setTimeout(() => {
     config.loading = window.$vm.$toast.loading({
-      duration: 10,
+      duration: 10000,
       forbidClick: true, // 禁用背景点击
       loadingType: 'spinner'
     })
-  }, 1500)
+  }, 500)
 
   return config
 }, function (error) {

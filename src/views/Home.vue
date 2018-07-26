@@ -1,8 +1,8 @@
 <template>
 <v-layout class="home" :active="1">
-  <van-tabs :swipeable="true">
+  <van-tabs :swipeable="true" style="height:100%">
     <div class="logo"><img src="@/assets/icon/blog_logo.png" /></div>
-    <van-tab class="tabs" swipeable v-for="(tab,index) in blogs" :title="tab.name" :key="index">
+    <van-tab class="tabs" style="height:100%" swipeable v-for="(tab,index) in blogs" :title="tab.name" :key="index">
       <div class="items" v-if="tab.name==='最新'">
         <van-pull-refresh @refresh="onRefresh" v-model="isRefresh">
           <v-blog-item :item="item" :key="key" v-for="(item,key) in tab.items"></v-blog-item>
@@ -72,11 +72,8 @@ export default {
   methods: {
     loadBlogs () {
       this.isLoadingAll = true
-      let pageSize = 20
-      let page =
-        this.blogs[0].items.length % pageSize === 0
-          ? Math.floor(this.blogs[0].items.length / pageSize) + 1
-          : Math.floor(this.blogs[0].items.length / pageSize) + 2
+      let pageSize = 50
+      let page = Math.floor(this.blogs[0].items.length / pageSize) + 1
       getHomePage(page, pageSize).then(res => {
         this.blogs[0].items.push(...res)
         this.isLoadingAll = false
@@ -84,9 +81,13 @@ export default {
     },
     onRefresh () {
       this.isRefresh = true
-      getHomePage(1, 20).then(res => {
+      let pageSize = 50
+      getHomePage(1, pageSize).then(res => {
         this.blogs[0].items = res
         this.isRefresh = false
+        this.$toast({
+          message: '刷新完毕'
+        })
       })
     }
   }
@@ -106,7 +107,6 @@ export default {
       height: 100%;
     }
   }
-  height: 100vh;
   /deep/ .van-tabs__wrap {
     background-color: white;
     .van-tabs__nav {
@@ -121,11 +121,11 @@ export default {
     width: 100%;
   }
   .items {
-    height: 100vh;
-    overflow-y: scroll;
     padding-bottom: 70px;
     box-sizing: border-box;
     padding-top: 40px;
+    height: 100%;
+    overflow-y: auto;
     .tip {
       margin-top: 10px;
       color: gray;

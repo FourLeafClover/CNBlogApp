@@ -28,7 +28,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .layout{
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
   /deep/ .van-nav-bar{
     position: fixed;
     top: 0;

@@ -3,7 +3,7 @@
   <div class="content">
     <slot></slot>
   </div>
-  <van-tabbar>
+  <van-tabbar class="bottomBar">
     <van-tabbar-item icon="shop" v-show="active==1" @click.native="go('/')">
       <span class="on">首页</span>
       <img slot="icon" slot-scope="props" src="@/assets/icon/blog_on.png" />
@@ -61,10 +61,16 @@ export default {
 
 <style lang="scss" scoped>
 .layout {
-  overflow: scroll;
-  .on {
-    color: dodgerblue;
-    font-weight: bold;
+  .content {
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  >.bottomBar {
+    .on {
+      color: dodgerblue;
+      font-weight: bold;
+    }
   }
 }
 </style>

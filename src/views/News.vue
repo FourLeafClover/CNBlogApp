@@ -1,18 +1,20 @@
 <template>
 <v-layout class="home" :active="2">
   <div class="logo"><img src="@/assets/icon/news_logo.png" /></div>
-  <van-tabs :swipeable="true" :sticky='true'>
-    <van-tab class="tabs toptabs" v-for="(tab,index) in news" :title="tab.name" :key="index">
+  <van-tabs :swipeable="true" style="height:100%" :sticky='true'>
+    <van-tab class="tabs toptabs" style="height:100%" v-for="(tab,index) in news" :title="tab.name" :key="index">
       <div class="items">
         <div v-if="tab.name==='最新'">
-          <v-news-item :item="item" :key="key" v-for="(item,key) in tab.items"></v-news-item>
-          <div class="loadmore" @click="loadLastNews" v-if="!tab.loadingComplete" v-show="!tab.isLoading">
-            点击加载更多
-          </div>
-          <div class="loadmore" v-if="tab.loadingComplete">
-            加载完毕
-          </div>
-          <v-loading v-show="tab.isLoading"></v-loading>
+          <van-pull-refresh @refresh="onRefresh" v-model="isRefresh">
+            <v-news-item :item="item" :key="key" v-for="(item,key) in tab.items"></v-news-item>
+            <div class="loadmore" @click="loadLastNews" v-if="!tab.loadingComplete" v-show="!tab.isLoading">
+              点击加载更多
+            </div>
+            <div class="loadmore" v-if="tab.loadingComplete">
+              加载完毕
+            </div>
+            <v-loading v-show="tab.isLoading"></v-loading>
+          </van-pull-refresh>
         </div>
         <div v-if="tab.name==='推荐'">
           <v-news-item :item="item" :key="key" v-for="(item,key) in tab.items"></v-news-item>
@@ -61,7 +63,8 @@ export default {
         name: '热门',
         items: []
       }
-      ]
+      ],
+      isRefresh: false
     }
   },
   mounted () {
@@ -72,10 +75,7 @@ export default {
   methods: {
     loadLastNews () {
       let pageSize = 20
-      let page =
-        this.news[0].items.length % pageSize === 0
-          ? Math.floor(this.news[0].items.length / pageSize) + 1
-          : Math.floor(this.news[0].items.length / pageSize) + 2
+      let page = Math.floor(this.news[0].items.length / pageSize) + 1
       this.news[0].isLoading = true
       getLastNews(page, pageSize).then(res => {
         this.news[0].items.push(...res)
@@ -91,11 +91,8 @@ export default {
       })
     },
     loadRecommendNews () {
-      let pageSize = 20
-      let page =
-        this.news[0].items.length % pageSize === 0
-          ? Math.floor(this.news[0].items.length / pageSize) + 1
-          : Math.floor(this.news[0].items.length / pageSize) + 2
+      let pageSize = 50
+      let page = Math.floor(this.news[0].items.length / pageSize) + 1
       this.news[1].isLoading = true
       getRecommendNews(page, pageSize).then(res => {
         this.news[1].items.push(...res)
@@ -104,6 +101,17 @@ export default {
           this.news[0].loadingComplete = true
         }
       })
+    },
+    onRefresh () {
+      let pageSize = 50
+      this.isRefresh = true
+      getRecommendNews(1, pageSize).then(res => {
+        this.news[0].items = res
+        this.isRefresh = false
+        this.$toast({
+          message: '刷新完毕'
+        })
+      })
     }
   }
 }
@@ -111,13 +119,12 @@ export default {
 
 <style lang="scss" scoped>
 .home {
-  height: 100vh;
   .logo {
     position: fixed;
     left: 10px;
     top: 2px;
     z-index: 999;
-    img{
+    img {
       width: 30px;
     }
   }
@@ -135,11 +142,11 @@ export default {
     width: 100%;
   }
   .items {
-    height: 100vh;
-    overflow-y: scroll;
     padding-bottom: 70px;
     box-sizing: border-box;
     padding-top: 40px;
+    height: 100%;
+    overflow: auto;
     .tip {
       margin-top: 10px;
       color: gray;

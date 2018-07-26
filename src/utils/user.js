@@ -4,42 +4,31 @@ import { setCookie } from '@/utils/$cookie'
 export function setAuthCookie (cnblogsCookie) {
   // 存储到缓存
   setItem('cnblog.cookie', cnblogsCookie)
-  setCookie('.CNBlogsCookie', cnblogsCookie)
   // Cookie中添加
   if (window.cookieMaster) {
     window.cookieMaster.setCookieValue(
       'www.cnblogs.com',
       '.CNBlogsCookie',
-      this.cookie
+      cnblogsCookie
     )
     window.cookieMaster.setCookieValue('news.cnblogs.com', '.CNBlogsCookie', cnblogsCookie)
+  } else {
+    setCookie('.CNBlogsCookie', cnblogsCookie)
   }
 }
 
 export function initAuthCookie () {
   const cnblogsCookie = getItem('cnblog.cookie')
-  const aspNetCoreCookies = getItem('cnblog.aspnetcookie')
   if (cnblogsCookie) {
-    setCookie('.CNBlogsCookie', cnblogsCookie)
     if (window.cookieMaster) {
       window.cookieMaster.setCookieValue(
         'www.cnblogs.com',
         '.CNBlogsCookie',
-        this.cookie,
-        function () {
-          window.$vm.$toast({
-            message: '登录Cookie设置成功'
-          })
-        },
-        function () {
-          window.$vm.$toast({
-            message: '登录Cookie设置失败'
-          })
-        }
+        cnblogsCookie
       )
-      window.cookieMaster.setCookieValue('www.cnblogs.com', '.Cnblogs.AspNetCore.Cookies', aspNetCoreCookies)
       window.cookieMaster.setCookieValue('news.cnblogs.com', '.CNBlogsCookie', cnblogsCookie)
-      window.cookieMaster.setCookieValue('news.cnblogs.com', '.Cnblogs.AspNetCore.Cookies', aspNetCoreCookies)
+    } else {
+      setCookie('.CNBlogsCookie', cnblogsCookie)
     }
   }
 }
@@ -53,10 +42,7 @@ export function removeUser (cookie) {
 }
 
 export function removeAuthCookie (cookie) {
-  clearItem('cnblog.cookie')
-  if (window.cookieMaster) {
-    window.cookieMaster.clear()
-  }
+  setAuthCookie('')
 }
 
 export function getUser () {

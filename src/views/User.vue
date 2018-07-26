@@ -2,7 +2,9 @@
 <v-layout :active="3" class="user">
   <div class="header">
     <div class="loginHeader" @click="()=>showLogin=true" v-if="!user">
-      <img src="@/assets/icon/default_avatar.png" />
+      <img src="@/assets/icon/blog_on.png" />
+      <div class="name">博客园 Cnblog.com</div>
+      <div class="blogapp">Code change the world</div>
     </div>
     <div v-else class="loginHeader">
       <img class="img" :src="user.avatar|imgConvert" />
@@ -82,12 +84,21 @@ export default {
     ...mapActions('app', ['OPEN_PAGEANIMATION']),
     login () {
       if ((this.blogApp !== '') && (this.cookie !== '')) {
+        let loading = this.$toast.loading({
+          duration: 10000,
+          forbidClick: true, // 禁用背景点击
+          loadingType: 'spinner'
+        })
         loadUser(this.blogApp).then(res => {
+          loading.clear()
           if (res) {
             setUser(res)
             this.user = res
-            setAuthCookie(this.cookie)
             this.showLogin = false
+            setAuthCookie(this.cookie)
+            this.$toast({
+              message: '登录信息设置成功'
+            })
           } else {
             this.$toast({
               message: '无法匹配用户,请重试输入'
@@ -104,6 +115,9 @@ export default {
       removeUser()
       removeAuthCookie()
       this.user = null
+      this.$toast({
+        message: '退出登录'
+      })
     },
     updateCookie () {
       if (this.cookie) {
@@ -144,9 +158,8 @@ export default {
     color: black;
     position: absolute;
     font-size: bold;
-    top: 50%;
+    top: 22px;
     left: 80px;
-    transform: translateY(-20px);
   }
   .blogapp {
     left: 80px;
@@ -157,6 +170,7 @@ export default {
     font-size: 14px;
     top: 50%;
     transform: translateY(6px);
+    color: gray;
   }
   .exit {
     width: 100%;
