@@ -8,8 +8,9 @@
       <span class="date">发布于: {{curItem.published | dateFormat}}</span>
     </div>
   </div>
-  <v-loading v-if="body==''"></v-loading>
+  <v-loading v-if="isBodyLoading"></v-loading>
   <v-markdown v-if="body!=''" :html="body"></v-markdown>
+  <v-empty v-if="showEmpty" message="博客被火星人带走了"></v-empty>
   <div style="height:70px"></div>
   <van-tabbar>
     <van-tabbar-item @click="()=>showShare=true">
@@ -57,19 +58,27 @@ export default {
   data () {
     return {
       body: '',
+      isBodyLoading: false,
       showShare: false,
       showComment: false,
       comments: [],
       commentLoadComplete: false,
       commentIsLoading: false,
       commentInput: '',
-      curItem: this.$route.query
+      curItem: this.$route.query,
+      showEmpty: false
     }
   },
   created () {
     this.body = ''
+    this.isBodyLoading = true
     loadBlogBody(this.curItem.id).then(res => {
-      this.body = res
+      if (res != null) {
+        this.body = res
+      } else {
+        this.showEmpty = true
+      }
+      this.isBodyLoading = false
     })
     this.loadComments()
   },

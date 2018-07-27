@@ -22,7 +22,7 @@ export default {
     return {
       items: [],
       isShowLoading: true,
-      scrollTop: 0
+      scrollPosition: 0
     }
   },
   created () {
@@ -37,10 +37,13 @@ export default {
     }
   },
   activated () {
-    this.$el.scrollTo(0, this.scrollTop)
+    setTimeout(() => {
+      this.$el.scrollTo(0, this.scrollPosition)
+    }, 100)
   },
-  deactivated () {
-    this.scrollTop = this.$el.scrollTop
+  beforeRouteLeave (to, from, next) {
+    this.scrollPosition = this.$el.scrollTop
+    next()
   }
 }
 </script>

@@ -64,13 +64,32 @@ export default {
         items: []
       }
       ],
-      isRefresh: false
+      isRefresh: false,
+      scrollPosition: []
     }
   },
   mounted () {
     this.loadLastNews()
     this.loadHotNews()
     this.loadRecommendNews()
+  },
+  activated () {
+    const items = this.$el.querySelectorAll('.items')
+    if (this.scrollPosition.length > 0) {
+      for (let index = 0; index < items.length; index++) {
+        items[index].scrollTo(0, this.scrollPosition[index])
+      }
+    }
+  },
+  beforeRouteLeave (to, from, next) {
+    this.scrollPosition = []
+    let items = this.$el.querySelectorAll('.items')
+    if (items.length > 0) {
+      for (let index = 0; index < items.length; index++) {
+        this.scrollPosition.push(items[index].scrollTop)
+      }
+    }
+    next()
   },
   methods: {
     loadLastNews () {

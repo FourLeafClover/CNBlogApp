@@ -45,6 +45,7 @@ export function get10TopDigg () {
 }
 
 export function loadBlogBody (id) {
+  debugger
   return $http.get(`/blog/post/body/${id}`).then(res => {
     const data = res
     return Promise.resolve(data)

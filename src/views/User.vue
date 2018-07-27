@@ -126,9 +126,13 @@ export default {
       this.editCookieShow = false
     },
     gotoZone () {
-      this.push(
-        `/blogapp?name=${this.user.title}&blogapp=${this.user.blogapp}`
-      )
+      this.push({
+        name: 'page-blogapp',
+        query: {
+          name: this.user.title,
+          blogapp: this.user.blogapp
+        }
+      })
     }
   },
   watch: {

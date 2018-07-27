@@ -45,7 +45,6 @@ export default {
         let speedInc = 0
 
         const render = () => {
-          // console.log('render')
           canvas.width = canvas.clientWidth
           canvas.height = this.height2 || canvas.clientHeight
 

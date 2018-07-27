@@ -24,8 +24,8 @@ export default {
       items: [],
       isLoading: false,
       loadingComplete: false,
-      scrollTop: 0,
-      blogapp: ''
+      blogapp: '',
+      scrollPosition: 0
     }
   },
   created () {
@@ -38,13 +38,14 @@ export default {
       this.items = []
       this.isLoading = false
       this.loadingComplete = false
-      this.scrollTop = 0
+      this.scrollPosition = 0
       this.loadBlogs()
     }
-    this.$el.scrollTo(0, this.scrollTop)
+    this.$el.scrollTo(0, this.scrollPosition)
   },
-  deactivated () {
-    this.scrollTop = this.$el.scrollTop
+  beforeRouteLeave (to, from, next) {
+    this.scrollPosition = this.$el.scrollTop
+    next()
   },
   methods: {
     loadBlogs () {

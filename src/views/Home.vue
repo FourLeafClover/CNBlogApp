@@ -51,7 +51,8 @@ export default {
       ],
       isLoadingAll: true,
       scrollTop: 0,
-      isRefresh: false
+      isRefresh: false,
+      scrollPosition: []
     }
   },
   mounted () {
@@ -64,10 +65,22 @@ export default {
     })
   },
   activated () {
-    this.$el.querySelector('.items').scrollTo(0, this.scrollTop)
+    const items = this.$el.querySelectorAll('.items')
+    if (this.scrollPosition.length > 0) {
+      for (let index = 0; index < items.length; index++) {
+        items[index].scrollTo(0, this.scrollPosition[index])
+      }
+    }
   },
-  deactivated () {
-    this.scrollTop = this.$el.querySelector('.items').scrollTop
+  beforeRouteLeave (to, from, next) {
+    this.scrollPosition = []
+    let items = this.$el.querySelectorAll('.items')
+    if (items.length > 0) {
+      for (let index = 0; index < items.length; index++) {
+        this.scrollPosition.push(items[index].scrollTop)
+      }
+    }
+    next()
   },
   methods: {
     loadBlogs () {

@@ -17,7 +17,13 @@ export default {
   },
   methods: {
     gotoZone () {
-      this.push(`blogapp?name=${this.item.name}&blogapp=${this.item.blogapp}`)
+      this.push({
+        name: 'page-blogapp',
+        query: {
+          name: this.item.name,
+          blogapp: this.item.blogapp
+        }
+      })
     }
   }
 }

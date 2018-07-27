@@ -44,9 +44,13 @@ export default {
       })
     },
     gotoZone () {
-      this.push(
-        `/blogapp?blogapp=${this.item.blogapp}&name=${this.item.author.name}`
-      )
+      this.push({
+        name: 'page-blogapp',
+        query: {
+          name: this.item.author.name,
+          blogapp: this.item.blogapp
+        }
+      })
     }
   }
 }

@@ -47,7 +47,6 @@ export default {
     active: 0
   },
   created () {
-    console.log(this.active)
   },
   methods: {
     go (url) {
@@ -61,11 +60,8 @@ export default {
 
 <style lang="scss" scoped>
 .layout {
-  .content {
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
+  height: 100%;
+  overflow-y: auto;
   >.bottomBar {
     .on {
       color: dodgerblue;
