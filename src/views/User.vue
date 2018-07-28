@@ -44,7 +44,7 @@
   </van-actionsheet>
   <van-actionsheet v-model="editCookieShow" title="更新Cookie">
     <van-cell-group>
-      <van-field v-model.trim="cookie" style="border-bottom: 2px solid #e8e8e8" type="textarea" placeholder="请输入.CNBlogsCookie" rows="3" autosize />
+      <van-field v-model.trim="cookie" style="border-bottom: 2px solid #e8e8e8;" type="textarea" placeholder="请输入.CNBlogsCookie" rows="3" :autosize="false" />
     </van-cell-group>
     <div>
       <van-button style="width:100%" type="primary" @click="updateCookie">确定</van-button>
@@ -188,6 +188,9 @@ export default {
 .user {
   /deep/ .van-cell {
     border-bottom: 2px solid #eeeeee !important;
+  }
+  /deep/ textArea{
+    max-height:100px;
   }
 }
 

@@ -1,5 +1,6 @@
 import $http from '../utils/$http'
 import { getHomePageConvert, getCommentConvert, userConvert, bloggerConvert } from '@/api/blog.convert'
+import Axios from '../../node_modules/axios'
 const xmltojson = require('xmltojson')
 const options = {
   mergeCDATA: true,
@@ -45,7 +46,6 @@ export function get10TopDigg () {
 }
 
 export function loadBlogBody (id) {
-  debugger
   return $http.get(`/blog/post/body/${id}`).then(res => {
     const data = res
     return Promise.resolve(data)
@@ -94,6 +94,21 @@ export function searchBloggers (keyword) {
   return $http.get(`/blog/bloggers/search?t=${keyword}`).then(res => {
     const data = bloggerConvert(xmltojson.parseString(res, options))
     return Promise.resolve(data)
+  }).catch(err => {
+    return Promise.reject(err)
+  })
+}
+
+// WCF获取body接口不稳定.直接从博客园PC端通过连接获取博文body
+export function loadBlogBodyFromPC (url) {
+  return Axios.get(url).then(res => {
+    let body = ''
+    if (res.data) {
+      let element = document.createElement('div')
+      element.innerHTML = res.data
+      body = element.querySelector('#cnblogs_post_body').innerHTML
+    }
+    return Promise.resolve(body)
   }).catch(err => {
     return Promise.reject(err)
   })

@@ -47,12 +47,14 @@
 <script>
 import {
   loadBlogBody,
-  getBlogComment
+  getBlogComment,
+  loadBlogBodyFromPC
 } from '@/api/blog'
 import {
   voteBlog,
   addComment
 } from '@/api/user'
+import { ENV } from '@/config/conf'
 export default {
   name: 'page-blogdetail',
   data () {
@@ -72,14 +74,25 @@ export default {
   created () {
     this.body = ''
     this.isBodyLoading = true
-    loadBlogBody(this.curItem.id).then(res => {
-      if (res != null) {
-        this.body = res
-      } else {
-        this.showEmpty = true
-      }
-      this.isBodyLoading = false
-    })
+    if (ENV === 'deveploment') {
+      loadBlogBody(this.curItem.id).then(res => {
+        if (res != null) {
+          this.body = res
+        } else {
+          this.showEmpty = true
+        }
+        this.isBodyLoading = false
+      })
+    } else {
+      loadBlogBodyFromPC(this.curItem.link).then(res => {
+        if (res != null) {
+          this.body = res
+        } else {
+          this.showEmpty = true
+        }
+        this.isBodyLoading = false
+      })
+    }
     this.loadComments()
   },
   methods: {
