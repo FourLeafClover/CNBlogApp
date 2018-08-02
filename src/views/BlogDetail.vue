@@ -74,7 +74,7 @@ export default {
   created () {
     this.body = ''
     this.isBodyLoading = true
-    if (ENV === 'deveploment') {
+    if (ENV === 'development') {
       loadBlogBody(this.curItem.id).then(res => {
         if (res != null) {
           this.body = res
