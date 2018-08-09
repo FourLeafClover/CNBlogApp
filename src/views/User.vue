@@ -26,6 +26,9 @@
       <img slot="icon" class="cell-icon" src="@/assets/icon/setting.png" />
       <van-switch class="right-icon" size='25px' v-model="isOpenPageAnimation" />
     </van-cell>
+    <van-cell title="Version(2018/08/09)" value="检查更新" is-link @click="downloadApp">
+      <img slot="icon" class="cell-icon" src="@/assets/icon/updateapp.png"  />
+    </van-cell>
     <van-cell title="关于" is-link @click="()=>this.push('/about')">
       <img slot="icon" class="cell-icon" src="@/assets/icon/about.png" />
     </van-cell>
@@ -50,6 +53,7 @@
       <van-button style="width:100%" type="primary" @click="updateCookie">确定</van-button>
     </div>
   </van-actionsheet>
+  <v-waves class="mywaves" :speed="2"></v-waves>
 </v-layout>
 </template>
 
@@ -66,10 +70,10 @@ import {
 } from '@/utils/user'
 import {
   mapActions
-} from 'vuex'
+} from 'vuex';
 export default {
   name: 'about',
-  data () {
+  data() {
     return {
       showLogin: false,
       blogApp: '',
@@ -82,8 +86,8 @@ export default {
   },
   methods: {
     ...mapActions('app', ['OPEN_PAGEANIMATION']),
-    login () {
-      if ((this.blogApp !== '') && (this.cookie !== '')) {
+    login() {
+      if (this.blogApp !== '' && this.cookie !== '') {
         let loading = this.$toast.loading({
           duration: 10000,
           forbidClick: true, // 禁用背景点击
@@ -111,7 +115,7 @@ export default {
         })
       }
     },
-    logout () {
+    logout() {
       removeUser()
       removeAuthCookie()
       this.user = null
@@ -119,13 +123,13 @@ export default {
         message: '退出登录'
       })
     },
-    updateCookie () {
+    updateCookie() {
       if (this.cookie) {
         setAuthCookie(this.cookie)
       }
       this.editCookieShow = false
     },
-    gotoZone () {
+    gotoZone() {
       this.push({
         name: 'page-blogapp',
         query: {
@@ -133,10 +137,13 @@ export default {
           blogapp: this.user.blogapp
         }
       })
+    },
+    downloadApp(){
+      window.open('https://fir.im/cnblog')
     }
   },
   watch: {
-    isOpenPageAnimation () {
+    isOpenPageAnimation() {
       this.OPEN_PAGEANIMATION(this.isOpenPageAnimation)
     }
   }
@@ -189,8 +196,8 @@ export default {
   /deep/ .van-cell {
     border-bottom: 2px solid #eeeeee !important;
   }
-  /deep/ textArea{
-    max-height:100px;
+  /deep/ textarea {
+    max-height: 100px;
   }
 }
 
@@ -204,5 +211,11 @@ export default {
   bottom: 80px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.mywaves {
+  position: fixed;
+  bottom: 50px;
+  height: 150px;
 }
 </style>
