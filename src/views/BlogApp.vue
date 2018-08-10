@@ -14,7 +14,9 @@
 </template>
 
 <script>
-import { loadBlogApp } from '@/api/blog';
+import {
+  loadBlogApp
+} from '@/api/blog'
 export default {
   name: 'page-blogapp',
   data () {
