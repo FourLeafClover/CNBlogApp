@@ -26,8 +26,11 @@
       <img slot="icon" class="cell-icon" src="@/assets/icon/setting.png" />
       <van-switch class="right-icon" size='25px' v-model="isOpenPageAnimation" />
     </van-cell>
+    <van-cell title="本地收藏" @click="push('collection')" is-link>
+      <img slot="icon" class="cell-icon" src="@/assets/icon/collect_on.png" />
+    </van-cell>
     <van-cell title="Version(2018/08/09)" value="检查更新" is-link @click="downloadApp">
-      <img slot="icon" class="cell-icon" src="@/assets/icon/updateapp.png"  />
+      <img slot="icon" class="cell-icon" src="@/assets/icon/updateapp.png" />
     </van-cell>
     <van-cell title="关于" is-link @click="()=>this.push('/about')">
       <img slot="icon" class="cell-icon" src="@/assets/icon/about.png" />
@@ -62,31 +65,33 @@ import {
   loadUser
 } from '@/api/blog.js'
 import {
-  setUser,
   setAuthCookie,
-  getUser,
-  removeUser,
   removeAuthCookie
 } from '@/utils/user'
 import {
   mapActions
-} from 'vuex';
+} from 'vuex'
 export default {
   name: 'about',
-  data() {
+  data () {
     return {
-      showLogin: false,
       blogApp: '',
       cookie: '',
       newsCookie: '',
-      user: getUser(),
+      showLogin: false,
       editCookieShow: false,
       isOpenPageAnimation: this.$store.state.app.openPageAnimation
     }
   },
+  computed: {
+    user () {
+      return this.$store.state.user.user
+    }
+  },
   methods: {
     ...mapActions('app', ['OPEN_PAGEANIMATION']),
-    login() {
+    ...mapActions('user', ['SET_USER', 'REMOVE_USER']),
+    login () {
       if (this.blogApp !== '' && this.cookie !== '') {
         let loading = this.$toast.loading({
           duration: 10000,
@@ -96,9 +101,9 @@ export default {
         loadUser(this.blogApp).then(res => {
           loading.clear()
           if (res) {
-            setUser(res)
             this.user = res
             this.showLogin = false
+            this.SET_USER(res)
             setAuthCookie(this.cookie)
             this.$toast({
               message: '登录信息设置成功'
@@ -115,21 +120,21 @@ export default {
         })
       }
     },
-    logout() {
-      removeUser()
+    logout () {
+      this.REMOVE_USER()
       removeAuthCookie()
       this.user = null
       this.$toast({
         message: '退出登录'
       })
     },
-    updateCookie() {
+    updateCookie () {
       if (this.cookie) {
         setAuthCookie(this.cookie)
       }
       this.editCookieShow = false
     },
-    gotoZone() {
+    gotoZone () {
       this.push({
         name: 'page-blogapp',
         query: {
@@ -138,12 +143,12 @@ export default {
         }
       })
     },
-    downloadApp(){
+    downloadApp () {
       window.open('https://fir.im/cnblog')
     }
   },
   watch: {
-    isOpenPageAnimation() {
+    isOpenPageAnimation () {
       this.OPEN_PAGEANIMATION(this.isOpenPageAnimation)
     }
   }

@@ -16,25 +16,31 @@ let getBlogApp = function (item) {
 
 export function getHomePageConvert (data) {
   let entry = data.feed.entry
-  return entry.map(item => {
-    return {
-      id: getText(item.id),
-      author: {
-        name: getText(item.author.name),
-        avatar: getText(item.author.avatar),
-        uri: getText(item.author.uri),
-        blogapp: getBlogApp(item)
-      },
-      blogapp: getBlogApp(item),
-      summary: getText(item.summary),
-      views: getText(item.views),
-      title: getText(item.title),
-      published: getText(item.published),
-      comments: getText(item.comments),
-      link: item.link._attr.href._value,
-      diggs: getText(item.diggs) ? getText(item.diggs) : 0
+  let result = []
+  entry.map(item => {
+    try {
+      let convertItem = {
+        id: getText(item.id),
+        author: {
+          name: getText(item.author.name),
+          avatar: getText(item.author.avatar),
+          uri: getText(item.author.uri),
+          blogapp: getBlogApp(item)
+        },
+        blogapp: getBlogApp(item),
+        summary: getText(item.summary),
+        views: getText(item.views),
+        title: getText(item.title),
+        published: getText(item.published),
+        comments: getText(item.comments),
+        link: item.link._attr.href._value,
+        diggs: getText(item.diggs) ? getText(item.diggs) : 0
+      }
+      result.push(convertItem)
+    } catch (error) {
     }
   })
+  return result
 }
 
 export function getCommentConvert (data) {

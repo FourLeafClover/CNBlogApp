@@ -15,7 +15,7 @@ const actions = {
   UPDATE_PAGEANIMATION ({ commit }, animation) {
     commit('UPDATE_PAGEANIMATION', animation)
   },
-  OPEN_PAGEANIMATION ({commit}, isOpen) {
+  OPEN_PAGEANIMATION ({ commit }, isOpen) {
     setItem('cnblog.openPageAnimation', isOpen)
     commit('OPEN_PAGEANIMATION', isOpen)
   }

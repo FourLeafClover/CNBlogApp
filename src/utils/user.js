@@ -48,3 +48,23 @@ export function removeAuthCookie (cookie) {
 export function getUser () {
   return getItem('cnblog.user')
 }
+
+export function getBlogColl () {
+  let coll = getItem('cnblog.blog.coll')
+  return coll === null ? [] : coll
+}
+
+export function setBlogColl (blog) {
+  let coll = getBlogColl()
+  coll.unshift(blog)
+  setItem('cnblog.blog.coll', coll)
+}
+
+export function unCollectBlog (blog) {
+  let coll = getBlogColl()
+  let index = coll.findIndex(x => x.id === blog.id)
+  if (index >= 0) {
+    coll.splice(index, 1)
+    setItem('cnblog.blog.coll', coll)
+  }
+}

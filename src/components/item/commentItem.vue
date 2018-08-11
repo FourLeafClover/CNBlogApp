@@ -2,10 +2,10 @@
 <div class="item">
   <div class="header">
     <!--<img :src="item.author.avatar" alt="">-->
-    <div class="name">{{item.author.name}}</div>
+    <div class="name" @click="gotoZone">{{item.author.name}}</div>
     <div class="time">发布于: {{item.published | dateFormat}}</div>
   </div>
-  <div class="content" v-html="item.content.trim()"></div>
+  <div class="content" @click="$emit('reply',item)" v-html="item.content.trim()"></div>
 </div>
 </template>
 
@@ -17,7 +17,17 @@ export default {
       default: null
     }
   },
-  name: 'vCommentItem'
+  name: 'vCommentItem',
+  methods: {
+    gotoZone () {
+      this.push({
+        name: 'page-bloggersearch',
+        query: {
+          keyword: this.item.author.name
+        }
+      })
+    }
+  }
 }
 </script>
 
@@ -35,6 +45,7 @@ export default {
       left: 10px;
       font-size: 14px;
       font-weight: bold;
+      color: dodgerblue;
     }
     .time {
       position: absolute;

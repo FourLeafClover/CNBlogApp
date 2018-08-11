@@ -1,7 +1,7 @@
 import officalHttp from '@/utils/$official.http'
 import newsHttp from '@/utils/$news.http'
 
-export function addComment (blogapp, postid, content) {
+export function addComment (blogapp, postid, content, parentCommentId = 0) {
   // {"blogApp":"FourLeafCloverZc","postId":6118617,"body":"mark1","parentCommentId":0}
   return officalHttp({
     method: 'post',
@@ -10,7 +10,7 @@ export function addComment (blogapp, postid, content) {
       blogApp: blogapp,
       postid: postid,
       body: content,
-      parentCommentId: 0
+      parentCommentId: parentCommentId
     }
   })
 }

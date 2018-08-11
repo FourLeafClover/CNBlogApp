@@ -41,6 +41,14 @@ export default {
         }
       })
     }
+  },
+  activated () {
+    if (this.$route.query.keyword && (this.$route.query.keyword !== this.keyword)) {
+      this.keyword = this.$route.query.keyword
+      if (this.keyword !== '') {
+        this.search()
+      }
+    }
   }
 }
 </script>

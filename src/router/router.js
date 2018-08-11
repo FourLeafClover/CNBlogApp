@@ -74,6 +74,14 @@ let configs = [{
     needAuth: false,
     cache: true
   }
+}, {
+  path: '/collection',
+  name: 'page-blogCollection',
+  component: () => import('@/views/BlogCollection'),
+  meta: {
+    needAuth: false,
+    cache: true
+  }
 }
 ]
 
