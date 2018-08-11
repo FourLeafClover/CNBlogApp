@@ -199,7 +199,9 @@ export default {
 
 .user {
   /deep/ .van-cell {
-    border-bottom: 2px solid #eeeeee !important;
+    border-bottom: 1px solid #eeeeee !important;
+    background-color: rgba(0,0,0,0) !important;
+    z-index:9;
   }
   /deep/ textarea {
     max-height: 100px;
