@@ -1,5 +1,5 @@
 <template>
-<transition :name="transitionName">
+  <transition :name="transitionName">
     <keep-alive :include="include">
       <router-view class="router-view"></router-view>
     </keep-alive>

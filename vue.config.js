@@ -2,8 +2,9 @@ module.exports = {
   baseUrl: './',
   productionSourceMap: false,
   devServer: {
-    port: 7878,
-    proxy: {
+    port: 7878
+    // 不再使用代理,在chrome中安装跨域插件
+    /* proxy: {
       '/blog': {
         target: 'http://wcf.open.cnblogs.com',
         changeOrigin: true,
@@ -29,7 +30,7 @@ module.exports = {
         changeOrigin: true,
         secure: false
       }
-    }
+    } */
   },
   lintOnSave: false
 }

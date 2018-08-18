@@ -1,5 +1,6 @@
 <template>
 <v-layout class="home" :active="1">
+  <v-update-app />
   <van-tabs :swipeable="true" style="height:100%">
     <div class="logo"><img src="@/assets/icon/blog_logo.png" /></div>
     <van-tab class="tabs" style="height:100%" swipeable v-for="(tab,index) in blogs" :title="tab.name" :key="index">

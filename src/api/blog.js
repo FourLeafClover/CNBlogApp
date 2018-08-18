@@ -107,6 +107,13 @@ export function loadBlogBodyFromPC (url) {
       let element = document.createElement('div')
       element.innerHTML = res.data
       body = element.querySelector('#cnblogs_post_body').innerHTML
+      /* diggCount = Number(element.querySelector('#digg_count').innerHTML)
+      buryCount = Number(element.querySelector('#bury_count').innerHTML)
+      let diggElem = element.querySelector('#digg_tips')
+      if (diggElem) {
+        isDigg = diggElem.html().indexOf('您已推荐') >= 0
+        isBury = diggElem.html().indexOf('您已反对') >= 0
+      } */
     }
     return Promise.resolve(body)
   }).catch(err => {

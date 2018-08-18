@@ -29,7 +29,10 @@
     <van-cell title="本地收藏" @click="push('collection')" is-link>
       <img slot="icon" class="cell-icon" src="@/assets/icon/collect_on.png" />
     </van-cell>
-    <van-cell title="Version(2018/08/09)" value="检查更新" is-link @click="downloadApp">
+    <van-cell title="有更新啦" v-if="isHaveUpdate" is-link @click="downloadApp">
+      <img slot="icon" class="cell-icon" src="@/assets/icon/updateapp.png" />
+    </van-cell>
+    <van-cell title="暂无更新" v-else is-link @click="downloadApp">
       <img slot="icon" class="cell-icon" src="@/assets/icon/updateapp.png" />
     </van-cell>
     <van-cell title="关于" is-link @click="()=>this.push('/about')">
@@ -86,6 +89,9 @@ export default {
   computed: {
     user () {
       return this.$store.state.user.user
+    },
+    isHaveUpdate () {
+      return this.$store.state.app.isHaveUpdate
     }
   },
   methods: {
@@ -200,8 +206,8 @@ export default {
 .user {
   /deep/ .van-cell {
     border-bottom: 1px solid #eeeeee !important;
-    background-color: rgba(0,0,0,0) !important;
-    z-index:9;
+    background-color: rgba(0, 0, 0, 0) !important;
+    z-index: 9;
   }
   /deep/ textarea {
     max-height: 100px;

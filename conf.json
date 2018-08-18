@@ -1,6 +1,7 @@
 {
   "version": {
     "id": "2018.08.18",
-    "message": "新增App更新检查"
+    "message": "新增App更新检查",
+    "fourceUpdate": false
   }
 }

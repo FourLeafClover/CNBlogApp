@@ -98,7 +98,7 @@ export default {
     if (ENV === 'development') {
       loadBlogBody(this.curItem.id).then(res => {
         if (res != null) {
-          this.body = res
+          this.body = res.body
         } else {
           this.showEmpty = true
         }

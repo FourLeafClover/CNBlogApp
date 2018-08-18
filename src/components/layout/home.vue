@@ -4,6 +4,10 @@
     <slot></slot>
   </div>
   <van-tabbar class="bottomBar">
+    <van-tabbar-item icon="shop" v-if="$store.state.app.isHaveUpdate" @click.native="download">
+      <span>更新</span>
+      <img slot="icon" slot-scope="props" src="@/assets/icon/update.png" />
+    </van-tabbar-item>
     <van-tabbar-item icon="shop" v-show="active==1" @click.native="go('/')">
       <span class="on">首页</span>
       <img slot="icon" slot-scope="props" src="@/assets/icon/blog_on.png" />
@@ -46,13 +50,15 @@ export default {
   props: {
     active: 0
   },
-  created () {
-  },
+  created () {},
   methods: {
     go (url) {
       if (!window.location.href.endsWith(url)) {
         this.$router.push(url)
       }
+    },
+    download () {
+      window.open('https://fir.im/cnblog')
     }
   }
 }

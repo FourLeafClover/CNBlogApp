@@ -10,6 +10,7 @@ import share from './share'
 import bloggerItem from './item/bloggerItem'
 import empty from './404/blogger404.vue'
 import waves from './waves'
+import updateApp from './notice/updateApp'
 Vue.component(waves.name, waves)
 Vue.component(home.name, home)
 Vue.component(blogItem.name, blogItem)
@@ -22,3 +23,4 @@ Vue.component(share.name, share)
 Vue.component(bloggerItem.name, bloggerItem)
 Vue.component(empty.name, empty)
 Vue.component(waves.name, waves)
+Vue.component(updateApp.name, updateApp)
