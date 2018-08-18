@@ -1,7 +1,7 @@
 {
   "version": {
     "id": "2018.08.18",
-    "message": "1.app更新<br/>2.修复xxxbug<br/>此更新为强制更新,更新后才能使用新功能",
-    "fourceUpdate":true
+    "message": "1.app更新<br/>2.修复xxxbug<br/>3.此更新为强制更新,更新后才能使用新功能",
+    "fourceUpdate":false
   }
 }
