@@ -19,6 +19,8 @@ UI 库使用 vant: https://youzan.github.io/vant/#/zh-CN/intro/
 
 监控了原始backbutton事件,让其调用提供的goBack方法
 
+我已经将vue.config 里面的跨域配置去掉的,可以使用chrome插件crods domain来处理跨域问题。
+
 Cordova打包的时候需要引入如下Plugin,如果觉得运行慢可以自行引入inter的crosswalk或者腾讯的x5引擎提升性能
 
     <plugin name="com.cordova.plugins.cookiemaster" 
@@ -61,7 +63,9 @@ Cordova打包的时候需要引入如下Plugin,如果觉得运行慢可以自行
      
    https://fir.im/cnblog
    
-更新历史：【app发布历史,请前往下载链接自动更新】   
+更新历史：【app发布历史,请前往下载链接自动更新】 
+
+   2018/08/18 ---- 新增了App版本更新检查,配置读取的是项目里面的conf.json文件。
 
    2018/08/11 ---- 新增本地博客收藏和回复评论功能,本地收藏存储手机缓存里面。
 
