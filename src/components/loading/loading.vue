@@ -14,6 +14,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import '@/assets/styles/variable.scss';
   .loading {
     margin: 0 auto;
     margin-top: 10px;
@@ -21,7 +22,9 @@ export default {
       height: 30px !important;
       width: 30px !important;
       border-color: white !important;
-      border-top-color: dodgerblue !important;
+      @include themify {
+        border-top-color: themed('color')
+      }
     }
   }
 </style>

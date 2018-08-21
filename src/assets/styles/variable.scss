@@ -1,9 +1,61 @@
+$themes: (
+  dodgerblue: (
+    color:dodgerblue
+  ),
+  green:(
+    color:green
+  ),
+  red:(
+    color:red
+  ),
+  gray:(
+    color:gray
+  ),
+  purple:(
+    color:purple
+  ),
+  orange:(
+    color:orange
+  )
+);
+
+@mixin themify($themes: $themes) {
+  @each $theme, $map in $themes {
+    .theme-#{$theme} & {
+      $theme-map: () !global;
+      @each $key, $submap in $map {
+        $value: map-get(map-get($themes, $theme), '#{$key}');
+        $theme-map: map-merge($theme-map, ($key: $value)) !global;
+      }
+      @content;
+      $theme-map: null !global;
+    }
+  }
+}
+
+@function themed($key) {
+  @return map-get($theme-map, $key);
+}
 
 .van-switch--on{
-  background-color: dodgerblue !important;
+  background-color: !important;
 }
 
 .van-button--primary{
-  background-color: dodgerblue !important;
-    border: 1px solid dodgerblue !important;
+  @include themify{
+    background-color:themed('color') !important;
+    border: 1px solid themed('color') !important;
+  }
+}
+
+.van-icon{
+  @include themify{
+    color:themed('color') !important;
+  }
+}
+
+.van-nav-bar__title{
+  @include themify{
+    color:themed('color') !important;
+  }
 }

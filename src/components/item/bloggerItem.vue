@@ -30,6 +30,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variable.scss';
 .item {
   height: 80px;
   position: relative;
@@ -49,7 +50,9 @@ export default {
     position: absolute;
     left: 80px;
     top: 12px;
-    color: dodgerblue;
+    @include themify{
+      color:themed('color')
+    };
     white-space: nowrap;
     text-overflow: ellipsis;
     .blogapp {

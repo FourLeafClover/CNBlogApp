@@ -56,6 +56,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import '@/assets/styles/variable.scss';
 .item {
   padding: 10px;
   border-bottom: 5px solid #eeeeee;
@@ -77,7 +78,9 @@ export default {
     font-size: 12px;
     margin-top: 10px;
     .name {
-      color: dodgerblue;
+      @include themify {
+        color: themed('color')
+      };
       margin-right: 10px;
     }
   }

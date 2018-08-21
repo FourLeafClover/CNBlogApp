@@ -3,42 +3,26 @@
   <div class="content">
     <slot></slot>
   </div>
-  <van-tabbar class="bottomBar">
-    <van-tabbar-item icon="shop" v-if="$store.state.app.isHaveUpdate" @click.native="download">
+  <van-tabbar class="layoutNav">
+    <van-tabbar-item  v-if="$store.state.app.isHaveUpdate" @click.native="download">
+      <i class="iconfont icon-theme" slot="icon"></i>
       <span>更新</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/update.png" />
     </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active==1" @click.native="go('/')">
-      <span class="on">首页</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/blog_on.png" />
-    </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active!=1" @click.native="go('/')">
+    <van-tabbar-item  :class="active==1?'on':''" @click.native="go('/')">
+      <i class="iconfont icon-blogger" slot="icon"></i>
       <span>首页</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/blog.png" />
     </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active==2" @click.native="go('/news')">
+    <van-tabbar-item :class="active==2?'on':''" @click.native="go('/news')">
+      <i class="iconfont icon-news_hot" slot="icon" />
       <span class="on">新闻</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/news_on.png">
     </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active!=2" @click.native="go('/news')">
-      <span>新闻</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/news.png">
-    </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active==4" @click.native="go('/bloggerrank')">
-      <span class="on">排行榜</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/rank_on.png">
-    </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active!=4" @click.native="go('/bloggerrank')">
+    <van-tabbar-item :class="active==4?'on':''" @click.native="go('/bloggerrank')">
+      <i class="iconfont icon-paihangbang" slot="icon" />
       <span>排行榜</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/rank.png">
     </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active==3" @click.native="go('/user')">
+    <van-tabbar-item :class="active==3?'on':''" @click.native="go('/user')">
+      <i class="iconfont icon-account" slot="icon" />
       <span class="on">我的</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/user_on.png">
-    </van-tabbar-item>
-    <van-tabbar-item icon="shop" v-show="active!=3" @click.native="go('/user')">
-      <span>我的</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/user.png">
     </van-tabbar-item>
   </van-tabbar>
 </div>
@@ -65,14 +49,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variable.scss';
 .layout {
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  >.bottomBar {
-    .on {
-      color: dodgerblue;
-      font-weight: bold;
+}
+</style>
+<style lang="scss">
+@import '@/assets/styles/variable.scss';
+.layoutNav{
+  .on{
+    i,span{
+      @include themify($themes) {
+          color: themed('color') !important;
+        }
     }
   }
 }

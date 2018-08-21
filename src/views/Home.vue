@@ -2,7 +2,7 @@
 <v-layout class="home" :active="1">
   <v-update-app />
   <van-tabs :swipeable="true" style="height:100%">
-    <div class="logo"><img src="@/assets/icon/blog_logo.png" /></div>
+    <i class="iconfont icon-ego-blog"></i>
     <van-tab class="tabs" style="height:100%" swipeable v-for="(tab,index) in blogs" :title="tab.name" :key="index">
       <div class="items" v-if="tab.name==='最新'">
         <van-pull-refresh @refresh="onRefresh" v-model="isRefresh">
@@ -109,18 +109,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
-  .logo {
+@import '@/assets/styles/variable.scss';
+.icon-ego-blog {
     position: fixed;
     left: 10px;
     top: 0px;
     z-index: 99;
     height: 40px;
     margin-top: 2px;
-    img {
-      height: 100%;
-    }
-  }
+    @include themify {
+        color: themed('color') !important
+    };
+    font-size: 38px;
+}
+.home {
   /deep/ .van-tabs__wrap {
     background-color: white;
     .van-tabs__nav {

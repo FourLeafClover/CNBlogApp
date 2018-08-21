@@ -4,7 +4,7 @@
     <div class="title">{{curItem.title}}
     </div>
     <div class="author">
-      <span class="name" @click="gotoZone">{{curItem.author}}</span>
+      <span class="name author-name" @click="gotoZone">{{curItem.author}}</span>
       <span class="date">发布于: {{curItem.published | dateFormat}}</span>
     </div>
   </div>
@@ -15,19 +15,19 @@
   <van-tabbar>
     <van-tabbar-item @click="()=>showShare=true">
       <span>分享</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/share.png">
+      <i class="iconfont icon-share" slot="icon" />
     </van-tabbar-item>
     <van-tabbar-item icon="shop" @click="showComment=true">
       <span>评论</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/comment.png">
+       <i class="iconfont icon-comment" slot="icon" />
     </van-tabbar-item>
     <van-tabbar-item v-if="!isCollect" icon="shop" @click="COLLECT_BLOG($route.query)">
       <span>收藏</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/collect.png">
+      <i class="iconfont icon-emaxcitygerenxinxitubiaoji02" slot="icon" />
     </van-tabbar-item>
-    <van-tabbar-item v-else icon="shop" @click="UNCOLLECT_BLOG($route.query)">
+    <van-tabbar-item v-else class="on" @click="UNCOLLECT_BLOG($route.query)">
       <span>已收藏</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/collect_on.png">
+      <i class="iconfont icon-emaxcitygerenxinxitubiaoji02" slot="icon" />
     </van-tabbar-item>
     <van-tabbar-item icon="shop" @click="vote">
       <span>推荐</span>
@@ -72,7 +72,9 @@ import {
 import {
   ENV
 } from '@/config/conf'
-import { mapActions } from 'vuex'
+import {
+  mapActions
+} from 'vuex'
 export default {
   name: 'page-blogdetail',
   data () {
@@ -222,6 +224,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variable.scss';
+.author-name {
+  @include themify {
+    color: themed('color') !important;
+  }
+}
+
 .blog {
   .header {
     border-bottom: 5px solid #eeeeee;
@@ -243,7 +252,6 @@ export default {
     position: relative;
     .name {
       margin-right: 5px;
-      color: dodgerblue;
       font-size: 14px;
     }
     .date {

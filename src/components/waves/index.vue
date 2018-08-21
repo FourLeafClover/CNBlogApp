@@ -15,6 +15,11 @@ export default {
       default: 3
     }
   },
+  data () {
+    return {
+      color: this.$store.state.app.theme
+    }
+  },
   activated () {
   },
   beforeDestroy () {
@@ -51,9 +56,8 @@ export default {
           // 设置每个波浪的动画
           for (let j = params.NUMBER_WAVES - 1; j >= 0; j--) {
             let offset = speedInc + j * Math.PI * params.OFFSET_WAVES
-
             // 颜色和透明度
-            ctx.fillStyle = params.COLOR[j]
+            ctx.fillStyle = this.color
 
             ctx.globalAlpha = wavesOpacities[j]
 
@@ -102,6 +106,11 @@ export default {
         window.TweenMax.ticker.addEventListener('tick', render)
       })
     }
+  },
+  watch: {
+    color () {
+      this.drawLine()
+    }
   }
 }
 </script>
@@ -110,6 +119,5 @@ export default {
 .wave-xp{
   width: 100%;
   height: 100%;
-  // background-color: #1c86fd;
 }
 </style>

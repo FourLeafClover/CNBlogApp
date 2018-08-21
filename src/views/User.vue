@@ -2,7 +2,7 @@
 <v-layout :active="3" class="user">
   <div class="header">
     <div class="loginHeader" @click="()=>showLogin=true" v-if="!user">
-      <img src="@/assets/icon/blog_on.png" />
+      <i class="logo iconfont icon-blogger"></i>
       <div class="name">博客园 Cnblog.com</div>
       <div class="blogapp">Code change the world</div>
     </div>
@@ -14,32 +14,35 @@
   </div>
   <van-cell-group>
     <van-cell title="登录" v-if="user==null" @click="()=>showLogin=true" is-link>
-      <img slot="icon" class="cell-icon" src="@/assets/icon/account.png" />
+      <i slot="icon" class="iconfont icon-account1 cell-icon" />
     </van-cell>
     <van-cell title="进入主页" @click="gotoZone" v-if="user" is-link>
-      <img slot="icon" class="cell-icon" src="@/assets/icon/qzone.png" />
+      <i slot="icon" class="iconfont icon-setting cell-icon" />>
     </van-cell>
     <van-cell title="更新登录Cookie" v-if="user" @click="editCookieShow=true" is-link>
-      <img slot="icon" class="cell-icon" src="@/assets/icon/update.png" />
+      <i slot="icon" class="iconfont icon-account1 cell-icon" />
     </van-cell>
     <van-cell title="页面过渡动画">
-      <img slot="icon" class="cell-icon" src="@/assets/icon/setting.png" />
+      <i slot="icon" class="iconfont icon-setting cell-icon" />
       <van-switch class="right-icon" size='25px' v-model="isOpenPageAnimation" />
     </van-cell>
     <van-cell title="本地收藏" @click="push('collection')" is-link>
-      <img slot="icon" class="cell-icon" src="@/assets/icon/collect_on.png" />
+      <i slot="icon" class="iconfont icon-emaxcitygerenxinxitubiaoji02 cell-icon" />
+    </van-cell>
+    <van-cell title="主題切换" is-link @click="()=>this.push('/theme')">
+      <i slot="icon" class="iconfont icon-theme cell-icon" />
     </van-cell>
     <van-cell title="有更新啦" v-if="isHaveUpdate" is-link @click="downloadApp">
-      <img slot="icon" class="cell-icon" src="@/assets/icon/updateapp.png" />
+      <i slot="icon" class="iconfont icon-update cell-icon" />
     </van-cell>
     <van-cell title="暂无更新" v-else is-link @click="downloadApp">
-      <img slot="icon" class="cell-icon" src="@/assets/icon/updateapp.png" />
+      <i slot="icon" class="iconfont icon-update cell-icon" />
     </van-cell>
     <van-cell title="关于" is-link @click="()=>this.push('/about')">
-      <img slot="icon" class="cell-icon" src="@/assets/icon/about.png" />
+      <i slot="icon" class="iconfont icon-about cell-icon" />
     </van-cell>
     <van-cell title="退出登录" v-if="user!=null" @click="logout" is-link>
-      <img slot="icon" class="cell-icon" src="@/assets/icon/logout.png" />
+      <i slot="icon" class="iconfont icon-exit cell-icon" />
     </van-cell>
   </van-cell-group>
   <van-actionsheet v-model="showLogin" title="登录">
@@ -162,11 +165,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variable.scss';
 .loginHeader {
   position: relative;
   height: 90px;
   background-color: #f8f8f8;
   margin-bottom: 5px;
+  .logo{
+    font-size:50px;
+    position:absolute;
+    left:20px;
+    top:20px;
+    @include themify {
+    color: themed('color') !important
+    }
+  }
   img {
     margin-left: 20px;
     width: 50px;
@@ -215,8 +228,11 @@ export default {
 }
 
 .cell-icon {
-  height: 25px;
   margin-right: 10px;
+  font-size: 18px;
+  @include themify {
+    color: themed('color') !important
+  }
 }
 
 .zone {

@@ -113,6 +113,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variable.scss';
 .news {
   .header {
     border-bottom: 5px solid #eeeeee;
@@ -134,7 +135,9 @@ export default {
     position: relative;
     .name {
       margin-right: 5px;
-      color: dodgerblue;
+      @include themify {
+        color: themed('color')
+      };
       font-size: 14px;
     }
     .date {

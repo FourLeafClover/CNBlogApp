@@ -1,6 +1,6 @@
 <template>
 <v-layout class="home" :active="2">
-  <div class="logo"><img src="@/assets/icon/news_logo.png" /></div>
+  <i class="iconfont icon-news_hot"></i>
   <van-tabs :swipeable="true" style="height:100%" :sticky='true'>
     <van-tab class="tabs toptabs" style="height:100%" v-for="(tab,index) in news" :title="tab.name" :key="index">
       <div class="items">
@@ -137,16 +137,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
-  .logo {
-    position: fixed;
-    left: 10px;
-    top: 2px;
-    z-index: 999;
-    img {
-      width: 30px;
-    }
+@import '@/assets/styles/variable.scss';
+.icon-news_hot {
+  position: fixed;
+  left: 10px;
+  top: 2px;
+  z-index: 999;
+  font-size: 35px;
+  @include themify {
+    color: themed('color') !important
   }
+}
+
+.home {
   /deep/ .van-tabs__wrap {
     background-color: white;
     .van-tabs__nav {

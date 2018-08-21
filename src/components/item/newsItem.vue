@@ -16,8 +16,7 @@ export default {
       default: null
     }
   },
-  created () {
-  },
+  created () {},
   methods: {
     gotoDetail () {
       this.push(`/newsdetail?id=${this.item.id}`)
@@ -27,6 +26,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variable.scss';
 .item {
   padding: 10px;
   border-bottom: 5px solid #eeeeee;
@@ -47,8 +47,10 @@ export default {
     color: gray;
     font-size: 12px;
     margin-top: 10px;
-    .name{
-      color: dodgerblue;
+    .name {
+      @include themify {
+        color: themed('color')
+      };
       margin-right: 10px;
     }
   }

@@ -2,7 +2,6 @@
 <div class="layout" :class="$route.name">
   <van-nav-bar
   :title="title"
-  left-text="Back"
   left-arrow
   @click-left="onClickLeft"
 />

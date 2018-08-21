@@ -1,7 +1,7 @@
 <template>
   <transition :name="transitionName">
     <keep-alive :include="include">
-      <router-view class="router-view"></router-view>
+      <router-view :class="`theme-${$store.state.app.theme}`" class="router-view"></router-view>
     </keep-alive>
   </transition>
 </template>

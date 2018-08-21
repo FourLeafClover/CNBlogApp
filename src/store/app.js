@@ -1,6 +1,7 @@
 import { getItem, setItem } from '@/utils/$storage'
 import { Version } from '@/config/conf'
 import { getConf } from '@/api/app'
+let theme = getItem('cnblog.theme')
 const state = {
   pageAnimation: 0,
   openPageAnimation: getItem('cnblog.openPageAnimation') !== null ? getItem('cnblog.openPageAnimation') : true, // 是否开启页面过渡动画,默认开启
@@ -8,7 +9,9 @@ const state = {
   serveConf: null, // 服务端配置
   openUpdateAppNotice: false,
   readVersion: getItem('cnblog.readVersion'), // 记录是否已经关闭某个版本更新的弹窗,
-  isHaveUpdate: false
+  isHaveUpdate: false,
+  theme: theme || 'dodgerblue',
+  themeList: ['dodgerblue', 'green', 'red', 'gray', 'purple', 'orange']
 }
 const mutations = {
   UPDATE_PAGEANIMATION (state, animation) {
@@ -33,6 +36,9 @@ const mutations = {
   CLOSE_UPDATEAPP_NOTICE (state) {
     setItem('cnblog.readVersion', state.serveConf.version.id)
     state.openUpdateAppNotice = false
+  },
+  CHANGE_THEME (state, theme) {
+    state.theme = theme
   }
 }
 const actions = {
@@ -52,6 +58,10 @@ const actions = {
   },
   CLOSE_UPDATEAPP_NOTICE ({ commit }) {
     commit('CLOSE_UPDATEAPP_NOTICE')
+  },
+  CHANGE_THEME ({ commit }, theme) {
+    setItem('cnblog.theme', theme)
+    commit('CHANGE_THEME', theme)
   }
 }
 

@@ -82,6 +82,14 @@ let configs = [{
     needAuth: false,
     cache: true
   }
+}, {
+  path: '/theme',
+  name: 'page-theme',
+  component: () => import('@/views/Theme'),
+  meta: {
+    needAuth: false,
+    cache: true
+  }
 }
 ]
 

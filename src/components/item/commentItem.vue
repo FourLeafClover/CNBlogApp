@@ -32,6 +32,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '@/assets/styles/variable.scss';
 .item {
   padding: 10px;
   margin-bottom: 5px solid #eeeeee;
@@ -45,7 +46,9 @@ export default {
       left: 10px;
       font-size: 14px;
       font-weight: bold;
-      color: dodgerblue;
+          @include themify{
+      color:themed('color')
+    };
     }
     .time {
       position: absolute;
