@@ -13,11 +13,11 @@
     <van-tabbar>
       <van-tabbar-item @click="()=>showShare=true">
         <span>分享</span>
-        <img slot="icon" slot-scope="props" src="@/assets/icon/share.png">
+        <i class="iconfont icon-share" slot="icon" />
       </van-tabbar-item>
       <van-tabbar-item icon="shop" @click="showComment=true">
         <span>查看评论</span>
-        <img slot="icon" slot-scope="props" src="@/assets/icon/comment.png">
+        <i class="iconfont icon-comment" slot="icon" />
       </van-tabbar-item>
     </van-tabbar>
     <v-share :show.sync="showShare" :link="link" :title="detail.Title"></v-share>

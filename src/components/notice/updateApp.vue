@@ -20,7 +20,7 @@ export default {
   methods: {
     ...mapActions('app', ['GET_SERVECONF', 'CLOSE_UPDATEAPP_NOTICE']),
     onConfirm () {
-      if (this.fourceUpdate) {
+      if (this.forceUpdate) {
         window.open('https://fir.im/cnblog')
       } else {
         this.CLOSE_UPDATEAPP_NOTICE()
@@ -30,10 +30,10 @@ export default {
   computed: {
     ...mapState({
       serveVersion: state => state.app.serveConf.version,
-      fourceUpdate: state => state.app.serveConf.version.fourceUpdate
+      forceUpdate: state => state.app.serveConf.version.forceUpdate
     }),
     confirmText () {
-      if (this.fourceUpdate) {
+      if (this.forceUpdate) {
         return '前往更新'
       } else {
         return '暂不更新'

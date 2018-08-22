@@ -17,7 +17,7 @@
       <i slot="icon" class="iconfont icon-account1 cell-icon" />
     </van-cell>
     <van-cell title="进入主页" @click="gotoZone" v-if="user" is-link>
-      <i slot="icon" class="iconfont icon-setting cell-icon" />>
+      <i slot="icon" class="iconfont icon-qzone cell-icon" />
     </van-cell>
     <van-cell title="更新登录Cookie" v-if="user" @click="editCookieShow=true" is-link>
       <i slot="icon" class="iconfont icon-account1 cell-icon" />
@@ -217,6 +217,7 @@ export default {
 }
 
 .user {
+  padding-bottom:60px;
   /deep/ .van-cell {
     border-bottom: 1px solid #eeeeee !important;
     background-color: rgba(0, 0, 0, 0) !important;

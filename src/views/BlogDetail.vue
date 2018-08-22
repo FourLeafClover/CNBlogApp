@@ -31,7 +31,7 @@
     </van-tabbar-item>
     <van-tabbar-item icon="shop" @click="vote">
       <span>推荐</span>
-      <img slot="icon" slot-scope="props" src="@/assets/icon/like.png">
+      <i class="iconfont icon-like"  slot="icon" />
     </van-tabbar-item>
   </van-tabbar>
   <v-share :show.sync="showShare" :link="curItem.link" :title="curItem.title"></v-share>

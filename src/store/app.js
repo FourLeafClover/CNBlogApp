@@ -24,7 +24,7 @@ const mutations = {
     state.serveConf = conf
     if (state.serveConf.version.id !== state.version) {
       state.isHaveUpdate = true
-      if (state.serveConf.version.fourceUpdate) {
+      if (state.serveConf.version.forceUpdate) {
         state.openUpdateAppNotice = true
       } else {
         if (state.readVersion !== state.serveConf.version.id) {

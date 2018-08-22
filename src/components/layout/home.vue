@@ -5,7 +5,7 @@
   </div>
   <van-tabbar class="layoutNav">
     <van-tabbar-item  v-if="$store.state.app.isHaveUpdate" @click.native="download">
-      <i class="iconfont icon-theme" slot="icon"></i>
+      <i class="iconfont icon-update" slot="icon"></i>
       <span>更新</span>
     </van-tabbar-item>
     <van-tabbar-item  :class="active==1?'on':''" @click.native="go('/')">
