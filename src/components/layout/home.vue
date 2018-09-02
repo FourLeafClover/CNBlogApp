@@ -3,7 +3,7 @@
   <div class="content">
     <slot></slot>
   </div>
-  <van-tabbar class="layoutNav">
+  <van-tabbar class="layoutNav" style="z-index:999">
     <van-tabbar-item  v-if="$store.state.app.isHaveUpdate" @click.native="download">
       <i class="iconfont icon-update" slot="icon"></i>
       <span>更新</span>

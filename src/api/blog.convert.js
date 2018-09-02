@@ -66,24 +66,6 @@ export function getCommentConvert (data) {
   }
 }
 
-export function userConvert (data) {
-  const entry = data.feed.entry
-  if (entry) {
-    if (Array.isArray(entry)) {
-      return null
-    } else {
-      return {
-        avatar: getText(entry.avatar),
-        blogapp: getText(entry.blogapp),
-        id: getText(entry.id),
-        title: getText(entry.title)
-      }
-    }
-  } else {
-    return null
-  }
-}
-
 export function bloggerConvert (data) {
   const entry = data.feed.entry
   if (entry) {

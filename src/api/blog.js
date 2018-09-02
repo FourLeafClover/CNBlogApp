@@ -63,10 +63,11 @@ export function getBlogComment (id, page, pageSize) {
   })
 }
 
-export function loadUser (blogApp) {
-  return $http.get(`/blog/bloggers/search?t=${blogApp}`).then(res => {
-    const data = userConvert(xmltojson.parseString(res, options))
-    return Promise.resolve(data)
+export function loadUser (name) {
+  return $http.get(`/blog/bloggers/search?t=${name}`).then(res => {
+    const data = bloggerConvert(xmltojson.parseString(res, options))
+    let user = data.find(item => item.name.toLocaleLowerCase() === name.toLocaleLowerCase())
+    return Promise.resolve(user)
   }).catch(err => {
     return Promise.reject(err)
   })
@@ -93,6 +94,7 @@ export function loadBloggerRank (count) {
 export function searchBloggers (keyword) {
   return $http.get(`/blog/bloggers/search?t=${keyword}`).then(res => {
     const data = bloggerConvert(xmltojson.parseString(res, options))
+    debugger
     return Promise.resolve(data)
   }).catch(err => {
     return Promise.reject(err)

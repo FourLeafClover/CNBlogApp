@@ -47,7 +47,7 @@
   </van-cell-group>
   <van-actionsheet v-model="showLogin" title="登录">
     <van-cell-group>
-      <van-field v-model="blogApp" type="text" placeholder="请输入登录名" rows="1" autosize />
+      <van-field @click-icon="showLoginNameHelper=true" v-model="loginName" type="text" placeholder="请输入登录名" rows="1" icon="question" autosize />
       <van-field v-model.trim="cookie" style="border-bottom: 2px solid #e8e8e8" type="textarea" placeholder="请输入.CNBlogsCookie" rows="5" autosize />
     </van-cell-group>
     <div>
@@ -63,6 +63,12 @@
     </div>
   </van-actionsheet>
   <v-waves class="mywaves" :speed="2"></v-waves>
+  <van-popup v-model="showLoginNameHelper" class="helper_notice">
+    <img src="https://images2018.cnblogs.com/blog/657942/201809/657942-20180902114550257-147904121.jpg" />
+    <div>
+      登录名请使用个人资料里面的昵称
+    </div>
+  </van-popup>
 </v-layout>
 </template>
 
@@ -81,12 +87,13 @@ export default {
   name: 'about',
   data () {
     return {
-      blogApp: '',
+      loginName: '',
       cookie: '',
       newsCookie: '',
       showLogin: false,
       editCookieShow: false,
-      isOpenPageAnimation: this.$store.state.app.openPageAnimation
+      isOpenPageAnimation: this.$store.state.app.openPageAnimation,
+      showLoginNameHelper: false
     }
   },
   computed: {
@@ -101,17 +108,18 @@ export default {
     ...mapActions('app', ['OPEN_PAGEANIMATION']),
     ...mapActions('user', ['SET_USER', 'REMOVE_USER']),
     login () {
-      if (this.blogApp !== '' && this.cookie !== '') {
+      if (this.loginName !== '' && this.cookie !== '') {
         let loading = this.$toast.loading({
           duration: 10000,
           forbidClick: true, // 禁用背景点击
           loadingType: 'spinner'
         })
-        loadUser(this.blogApp).then(res => {
+        loadUser(this.loginName).then(res => {
           loading.clear()
           if (res) {
             this.user = res
             this.showLogin = false
+            res.title = res.name
             this.SET_USER(res)
             setAuthCookie(this.cookie)
             this.$toast({
@@ -119,7 +127,7 @@ export default {
             })
           } else {
             this.$toast({
-              message: '无法匹配用户,请重试输入'
+              message: '无法匹配用户,请重试输入登录名'
             })
           }
         })
@@ -171,13 +179,13 @@ export default {
   height: 90px;
   background-color: #f8f8f8;
   margin-bottom: 5px;
-  .logo{
-    font-size:50px;
-    position:absolute;
-    left:20px;
-    top:20px;
+  .logo {
+    font-size: 50px;
+    position: absolute;
+    left: 20px;
+    top: 20px;
     @include themify {
-    color: themed('color') !important
+      color: themed('color') !important
     }
   }
   img {
@@ -217,7 +225,7 @@ export default {
 }
 
 .user {
-  padding-bottom:60px;
+  padding-bottom: 60px;
   /deep/ .van-cell {
     border-bottom: 1px solid #eeeeee !important;
     background-color: rgba(0, 0, 0, 0) !important;
@@ -247,5 +255,17 @@ export default {
   position: fixed;
   bottom: 50px;
   height: 150px;
+}
+
+.helper_notice {
+  img {
+    width: 80vw;
+  }
+  div {
+    line-height: 40px;
+    font-size: 12px;
+    text-align: center;
+    color: gray;
+  }
 }
 </style>

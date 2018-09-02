@@ -9,9 +9,9 @@
 import { mapActions } from 'vuex'
 export default {
   methods: {
-    ...mapActions('app', 'CHANGE_THEME'),
+    ...mapActions('app', ['CHANGE_THEME']),
     changeTheme (item) {
-      this.$store.dispatch('app/CHANGE_THEME', item)
+      this.CHANGE_THEME(item)
       this.goBack(-1)
     }
   }
