@@ -1,15 +1,12 @@
 <template>
-<van-dialog class="update" v-if="$store.state.app.openUpdateAppNotice" v-model="$store.state.app.openUpdateAppNotice" title="有更新啦" :confirm-button-text="confirmText" @confirm="onConfirm">
-  <div class="updatecontent" v-html="serveVersion.message">
-  </div>
-</van-dialog>
+  <van-dialog class="update" v-if="$store.state.app.openUpdateAppNotice" v-model="$store.state.app.openUpdateAppNotice" title="有更新啦" :confirm-button-text="confirmText" @confirm="onConfirm">
+    <div class="updatecontent" v-html="serveVersion.message">
+    </div>
+  </van-dialog>
 </template>
 
 <script>
-import {
-  mapActions,
-  mapState
-} from 'vuex'
+import { mapActions, mapState } from 'vuex'
 export default {
   name: 'vUpdateApp',
   data () {

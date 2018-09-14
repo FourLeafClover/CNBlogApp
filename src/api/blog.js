@@ -94,7 +94,6 @@ export function loadBloggerRank (count) {
 export function searchBloggers (keyword) {
   return $http.get(`/blog/bloggers/search?t=${keyword}`).then(res => {
     const data = bloggerConvert(xmltojson.parseString(res, options))
-    debugger
     return Promise.resolve(data)
   }).catch(err => {
     return Promise.reject(err)

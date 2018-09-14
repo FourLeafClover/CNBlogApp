@@ -1,80 +1,69 @@
 <template>
-<v-back-layout class="blog" :class="$route.name" title="博客详情">
-  <div class="header" v-if="curItem">
-    <div class="title">{{curItem.title}}
+  <v-back-layout class="blog" :class="$route.name" title="博客详情">
+    <div class="header" v-if="curItem">
+      <div class="title">{{curItem.title}}
+      </div>
+      <div class="author">
+        <span class="name author-name" @click="gotoZone">{{curItem.author}}</span>
+        <span class="date">发布于: {{curItem.published | dateFormat}}</span>
+      </div>
     </div>
-    <div class="author">
-      <span class="name author-name" @click="gotoZone">{{curItem.author}}</span>
-      <span class="date">发布于: {{curItem.published | dateFormat}}</span>
-    </div>
-  </div>
-  <v-loading v-if="isBodyLoading"></v-loading>
-  <v-markdown v-if="body!=''" :html="body"></v-markdown>
-  <v-empty v-if="showEmpty" message="博客被火星人带走了"></v-empty>
-  <div style="height:70px"></div>
-  <van-tabbar>
-    <van-tabbar-item @click="()=>showShare=true">
-      <span>分享</span>
-      <i class="iconfont icon-share" slot="icon" />
-    </van-tabbar-item>
-    <van-tabbar-item icon="shop" @click="showComment=true">
-      <span>评论</span>
-       <i class="iconfont icon-comment" slot="icon" />
-    </van-tabbar-item>
-    <van-tabbar-item v-if="!isCollect" icon="shop" @click="COLLECT_BLOG($route.query)">
-      <span>收藏</span>
-      <i class="iconfont icon-emaxcitygerenxinxitubiaoji02" slot="icon" />
-    </van-tabbar-item>
-    <van-tabbar-item v-else class="on" @click="UNCOLLECT_BLOG($route.query)">
-      <span>已收藏</span>
-      <i class="iconfont icon-emaxcitygerenxinxitubiaoji02" slot="icon" />
-    </van-tabbar-item>
-    <van-tabbar-item icon="shop" @click="vote">
-      <span>推荐</span>
-      <i class="iconfont icon-like"  slot="icon" />
-    </van-tabbar-item>
-  </van-tabbar>
-  <v-share :show.sync="showShare" :link="curItem.link" :title="curItem.title"></v-share>
-  <van-actionsheet style="overflow:hidden" v-model="showComment" title="评论">
-    <div class="comments">
-      <v-comment-item @reply="reply" v-for="(item,key) in comments" :item="item" :key="key"></v-comment-item>
-      <div class="item" v-show="showLoadingMore" @click="loadComments">点击加载更多评论</div>
-      <div class="item" v-show="commentLoadComplete">评论加载完毕</div>
-      <div class="item" v-if="showNoComment">没有评论</div>
-      <v-loading v-if="commentIsLoading"></v-loading>
-    </div>
-    <van-cell-group class="addComment">
-      <van-field type='text' v-model.trim="commentInput" autosize center clearable placeholder="我来说两句">
-        <van-button slot="button" size="small" type="primary" @click="sendComment">发送</van-button>
-      </van-field>
-    </van-cell-group>
-  </van-actionsheet>
-  <van-actionsheet style="z-index:9000" class="replyComment" v-model="isShowReply" :title="`回复 ${replyItem==null?'':replyItem.author.name}`">
-    <div>
-      <van-field type='text' v-if="isShowReply" :autofocus="isShowReply" v-model.trim="replyCommentInput" center clearable placeholder="请输入评论">
-        <van-button slot="button" size="small" type="primary" @click="sendReplyComment">发送</van-button>
-      </van-field>
-    </div>
-  </van-actionsheet>
-</v-back-layout>
+    <v-loading v-if="isBodyLoading"></v-loading>
+    <v-markdown v-if="body!=''" :html="body"></v-markdown>
+    <v-empty v-if="showEmpty" message="博客被火星人带走了"></v-empty>
+    <div style="height:70px"></div>
+    <van-tabbar>
+      <van-tabbar-item @click="()=>showShare=true">
+        <span>分享</span>
+        <i class="iconfont icon-share" slot="icon" />
+      </van-tabbar-item>
+      <van-tabbar-item icon="shop" @click="showComment=true">
+        <span>评论</span>
+        <i class="iconfont icon-comment" slot="icon" />
+      </van-tabbar-item>
+      <van-tabbar-item v-if="!isCollect" icon="shop" @click="COLLECT_BLOG($route.query)">
+        <span>收藏</span>
+        <i class="iconfont icon-emaxcitygerenxinxitubiaoji02" slot="icon" />
+      </van-tabbar-item>
+      <van-tabbar-item v-else class="on" @click="UNCOLLECT_BLOG($route.query)">
+        <span>已收藏</span>
+        <i class="iconfont icon-emaxcitygerenxinxitubiaoji02" slot="icon" />
+      </van-tabbar-item>
+      <van-tabbar-item icon="shop" @click="vote">
+        <span>推荐</span>
+        <i class="iconfont icon-like" slot="icon" />
+      </van-tabbar-item>
+    </van-tabbar>
+    <v-share :show.sync="showShare" :link="curItem.link" :title="curItem.title"></v-share>
+    <van-actionsheet style="overflow:hidden" v-model="showComment" title="评论">
+      <div class="comments">
+        <v-comment-item @reply="reply" v-for="(item,key) in comments" :item="item" :key="key"></v-comment-item>
+        <div class="item" v-show="showLoadingMore" @click="loadComments">点击加载更多评论</div>
+        <div class="item" v-show="commentLoadComplete">评论加载完毕</div>
+        <div class="item" v-if="showNoComment">没有评论</div>
+        <v-loading v-if="commentIsLoading"></v-loading>
+      </div>
+      <van-cell-group class="addComment">
+        <van-field type='text' v-model.trim="commentInput" autosize center clearable placeholder="我来说两句">
+          <van-button slot="button" size="small" type="primary" @click="sendComment">发送</van-button>
+        </van-field>
+      </van-cell-group>
+    </van-actionsheet>
+    <van-actionsheet style="z-index:9000" class="replyComment" v-model="isShowReply" :title="`回复 ${replyItem==null?'':replyItem.author.name}`">
+      <div>
+        <van-field type='text' v-if="isShowReply" :autofocus="isShowReply" v-model.trim="replyCommentInput" center clearable placeholder="请输入评论">
+          <van-button slot="button" size="small" type="primary" @click="sendReplyComment">发送</van-button>
+        </van-field>
+      </div>
+    </van-actionsheet>
+  </v-back-layout>
 </template>
 
 <script>
-import {
-  loadBlogBody,
-  getBlogComment,
-  loadBlogBodyFromPC
-} from '@/api/blog'
-import {
-  voteBlog,
-  addComment
-} from '@/api/user'
-import {
-  ENV
-} from '@/config/conf'
-import {
-  mapActions
-} from 'vuex'
+import { loadBlogBody, getBlogComment, loadBlogBodyFromPC } from '@/api/blog'
+import { voteBlog, addComment } from '@/api/user'
+import { ENV } from '@/config/conf'
+import { mapActions } from 'vuex'
 export default {
   name: 'page-blogdetail',
   data () {
@@ -151,25 +140,27 @@ export default {
         })
         return
       }
-      addComment(this.curItem.blogapp, this.curItem.id, this.commentInput).then(res => {
-        if (!res.IsSuccess) {
-          this.$toast({
-            message: res.Message
-          })
-        } else {
-          this.$toast({
-            message: '发表成功'
-          })
-          this.comments.unshift({
-            author: {
-              name: '我'
-            },
-            published: new Date().toGMTString(),
-            content: this.commentInput
-          })
-          this.commentInput = ''
+      addComment(this.curItem.blogapp, this.curItem.id, this.commentInput).then(
+        res => {
+          if (!res.IsSuccess) {
+            this.$toast({
+              message: res.Message
+            })
+          } else {
+            this.$toast({
+              message: '发表成功'
+            })
+            this.comments.unshift({
+              author: {
+                name: '我'
+              },
+              published: new Date().toGMTString(),
+              content: this.commentInput
+            })
+            this.commentInput = ''
+          }
         }
-      })
+      )
     },
     sendReplyComment () {
       if (this.replyCommentInput.length === 0) {
@@ -178,8 +169,15 @@ export default {
         })
         return
       }
-      let content = `@${this.replyItem.author.name} \n ${this.replyCommentInput}`
-      addComment(this.curItem.blogapp, this.curItem.id, content, this.replyItem.id).then(res => {
+      let content = `@${this.replyItem.author.name} \n ${
+        this.replyCommentInput
+      }`
+      addComment(
+        this.curItem.blogapp,
+        this.curItem.id,
+        content,
+        this.replyItem.id
+      ).then(res => {
         if (!res.IsSuccess) {
           this.$toast({
             message: res.Message
@@ -201,7 +199,9 @@ export default {
       })
     },
     gotoZone () {
-      return this.push(`/blogapp?name=${this.curItem.author}&blogapp=${this.curItem.blogapp}`)
+      return this.push(
+        `/blogapp?name=${this.curItem.author}&blogapp=${this.curItem.blogapp}`
+      )
     },
     reply (item) {
       console.log(item)
@@ -211,13 +211,21 @@ export default {
   },
   computed: {
     showLoadingMore () {
-      return (!this.commentIsLoading) && this.comments.length > 0 && (!this.commentLoadComplete)
+      return (
+        !this.commentIsLoading &&
+        this.comments.length > 0 &&
+        !this.commentLoadComplete
+      )
     },
     showNoComment () {
       return this.commentLoadComplete && this.comments.length === 0
     },
     isCollect () {
-      return this.$store.state.user.blog_coll.findIndex(x => x.id === this.$route.query.id) >= 0
+      return (
+        this.$store.state.user.blog_coll.findIndex(
+          x => x.id === this.$route.query.id
+        ) >= 0
+      )
     }
   }
 }
