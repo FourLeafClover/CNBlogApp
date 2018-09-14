@@ -83,7 +83,7 @@ Cordova打包的时候需要引入如下Plugin,如果觉得运行慢可以自行
    
 反馈:
 
-    1.有任何问题可以再Issue里面反馈
+    1.有任何问题可以在Issue里面反馈
    
     2.或者去我的博客下面评论. https://www.cnblogs.com/FourLeafCloverZc/p/9380895.html
    
